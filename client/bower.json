@@ -1,0 +1,23 @@
+{
+  "name": "client",
+  "authors": [
+    "vivek166 <vivek.tiwari.cse16@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "license": "MIT",
+  "homepage": "https://github.com/vivek166/projectui",
+  "dependencies": {
+    "angular": "^1.6.4",
+    "jquery": "^3.2.1",
+    "angular-route": "^1.6.4",
+    "bootstrap": "boostrap#^3.3.7"
+  },
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
