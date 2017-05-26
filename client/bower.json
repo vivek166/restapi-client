@@ -6,7 +6,7 @@
   "description": "",
   "main": "",
   "license": "MIT",
-  "homepage": "https://github.com/vivek166/projectui",
+  "homepage": "https://github.com/vivek166/restapi-client",
   "dependencies": {
     "angular": "^1.6.4",
     "jquery": "^3.2.1",
