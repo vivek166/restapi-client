@@ -1,8 +1,8 @@
-app.controller('userSignupCtrl', ['$scope', function($scope, $http, $location){
+app.controller('userSignupCtrl', function($scope, $http, $location){
 		$scope.skills = [];
 		$scope.addSkill = function() {
 			if( $scope.newSkill){
-					$scope.skills.push({'title': $scope.newSkill})
+					$scope.skills.push($scope.newSkill)
 					$scope.newSkill = ''
 			}
 		}
@@ -12,25 +12,17 @@ app.controller('userSignupCtrl', ['$scope', function($scope, $http, $location){
 		}
 
 	$scope.signupUser=function(){
+		if($scope.password==$scope.confirmPassword){
         var user={};
         user.firstName=$scope.firstName;
 		user.lastName=$scope.lastName;
 		user.companyName=$scope.companyName;
 		user.email=$scope.email;
-		user.technologies=$scope.skills;
+		user.skills=$scope.skills;
 		user.department=$scope.department;
 		user.type=$scope.type;
-		
-		if($scope.password==$scope.confirmPassword){
-			user.password=$scope.password;
-			save(user);
-		}else{
-			alert('user password must be match')
-		}
-		console.log($scope.firstName+$scope.lastName+$scope.companyName+$scope.email+$scope.password+skills+$scope.department+$scope.type);
-	}
-	var save =function(user){
-		$http({
+		user.password=$scope.password;
+			 $http({
                 method: 'POST',
                 url: 'http://localhost:8080/projectmanagementapp/employee',
                 data: user,
@@ -41,5 +33,9 @@ app.controller('userSignupCtrl', ['$scope', function($scope, $http, $location){
                 alert("record saved");
                 $location.path('/');
             })
-        }
-}]);
+		}else{
+			alert('user password must be match')
+		}
+		
+	}
+});

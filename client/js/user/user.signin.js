@@ -1,12 +1,12 @@
 app.controller('userSigninCtrl', function($scope, $http, $location){
 	$scope.signinUser=function(){
-		var user={};
-		user.userId=$scope.userId;
-		user.userPassword=$scope.userPassword;
+		var credential={};
+		credential.userName=$scope.userName;
+		credential.userPassword=$scope.userPassword;
 		$http({
                 method: 'POST',
-                url: 'http://localhost:8080/projectmanagementapp/user/userAuth',
-                data: user,
+                url: 'http://localhost:8080/projectmanagementapp/employee/authentication',
+                data: credential,
                 headers: {
                     'Content-Type': 'application/json'
                 }
