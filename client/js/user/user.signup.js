@@ -18,7 +18,7 @@ app.controller('userSignupCtrl', function($scope, $http, $location){
 		user.lastName=$scope.lastName;
 		user.companyName=$scope.companyName;
 		user.email=$scope.email;
-		user.skills=$scope.skills;
+		user.skills=$scope.skills.toString();
 		user.department=$scope.department;
 		user.type=$scope.type;
 		user.password=$scope.password;
@@ -30,8 +30,7 @@ app.controller('userSignupCtrl', function($scope, $http, $location){
                     'Content-Type': 'application/json'
                 }
             }).then(function(data, status, headers, config) {
-                alert("record saved");
-                $location.path('/');
+                $location.path('/project');
             })
 		}else{
 			alert('user password must be match')
@@ -39,3 +38,5 @@ app.controller('userSignupCtrl', function($scope, $http, $location){
 		
 	}
 });
+
+
