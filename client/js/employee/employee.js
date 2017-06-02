@@ -18,7 +18,8 @@ app.controller('employeeCtrl', function($scope, $http) {
     var getEmployee=function(start, size, content, pageNumber){
 	$http({
         method : "GET",
-        url : "http://localhost:8080/projectmanagementapp/employee?start="+start+"&size="+size+"&query="+content
+        url : "http://localhost:8080/projectmanagementapp/employee?start="+start+"&size="+size+"&query="+content,
+        headers : {'Authorization' : 'h1llifm1cg8tig0cv90lb8bjjk'}
     }).then(function mySucces(response) {
         $scope.employees=response.data.data;
         if(pageNumber>1){

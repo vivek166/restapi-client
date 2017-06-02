@@ -1,6 +1,6 @@
 app.controller('userSigninCtrl', function($scope, $http, $location){
 	$scope.signinUser=function(){
-		var credential={};
+		/*var credential={};
 		credential.userName=$scope.userName;
 		credential.userPassword=$scope.userPassword;
 		$http({
@@ -10,8 +10,16 @@ app.controller('userSigninCtrl', function($scope, $http, $location){
                 headers: {
                     'Content-Type': 'application/json'
                 }
-            }).then(function(data, status, headers, config) {
+            }).then(function mySucces(response) {
+                console.log(response.data.token);
+                console.log(response.data.userName);
+                var token=response.data.token;
+                var userName=response.data.userName;
                 $location.path('/project');
-            })
+        }, function myError(response) {
+           alert('userName or password wrong');
+        });*/
+
+         $location.path('/dashboard');
 	}
 });

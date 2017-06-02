@@ -1,0 +1,28 @@
+<div ng-controller="dashboardCtrl">
+   <div class="row">
+      <div class="col-lg-3">
+         <ul class="nav nav-tabs navbar-inverse nav-stacked"">
+            <li class="active"><a data-toggle="tab" href="#profile">Profile</a></li>
+            <li><a data-toggle="tab" href="#project">Project</a></li>
+            <li><a data-toggle="tab" href="#company">Company</a></li>
+            <li><a data-toggle="tab" href="#employee">Employee</a></li>
+         </ul>
+      </div>
+      <div class="col-lg-7 col-lg-offset-1">
+         <div class="tab-content">
+            <div id="profile" class="tab-pane fade in active">
+               <div ng-include="'client/view/user/user.signin.html'"></div>
+            </div>
+            <div id="project" class="tab-pane fade">
+               <div ng-include="'client/view/project/project.html'"></div>
+            </div>
+            <div id="company" class="tab-pane fade">
+               <div ng-include="'client/view/company/company.html'"></div>
+            </div>
+            <div id="employee" class="tab-pane fade">
+               <div ng-include="'client/view/employee/employee.html'"></div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

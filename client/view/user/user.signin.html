@@ -1,10 +1,26 @@
-<div center" ng-controller='userSigninCtrl'>
-<br>
+<div ng-controller='userSigninCtrl'>
+   <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+         <div class="navbar-header">
+            <a class="navbar-brand" href="#">RestApi</a>
+         </div>
+         <ul class="nav navbar-nav">
+            <li class="active"><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+         </ul>
+         <ul class="nav navbar-nav navbar-right">
+            <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="/signin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+         </ul>
+      </div>
+   </nav>
+   <br>
    <div class="row">
       <div class="col-md-4 col-md-offset-4  col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">
          <div class="panel panel-default">
             <div class="panel-body">
-               <h5 class="text-center">USER SIGN IN</h5>
+               <h5 class="text-center">Sign In</h5>
                <form class="form form-signup" role="form" name="userSigninForm">
                   <div class="form-group">
                      <div class="input-group">
@@ -20,7 +36,7 @@
                      </div>
                   </div>
                   <div>
-                     <button class="btn btn-sm btn-primary btn-block" ng-disabled="userSigninForm.$invalid" ng-click="signinUser()">SUBMIT</button>
+                     <button class="btn btn-sm btn-primary btn-block" ng-disabled="userSigninForm.$invalid" ng-click="signinUser()">Submit</button>
                   </div>
                </form>
             </div>

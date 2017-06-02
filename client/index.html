@@ -11,82 +11,15 @@
       <script src="/client/bower_components/angular-route/angular-route.min.js"></script>
       <script src="/client/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
       <link rel="stylesheet" href="/client/bower_components/bootstrap/dist/css/bootstrap.min.css">
-      <style>
-         .row.content {height: 1500px}
-         .sidenav {
-         background-color: #f1f1f1;
-         height: 100%;
-         }
-         footer {
-         background-color: #555;
-         color: white;
-         padding: 15px;
-         }
-         header {
-         background-color: #555;
-         color: white;
-         padding: 15px;
-         }
-         /* Add a black background color to the top navigation */
-         .topnav {
-         background-color: #555;
-         overflow: hidden;
-         }
-         /* Style the links inside the navigation bar */
-         .topnav a {
-         float: left;
-         display: block;
-         color: #f2f2f2;
-         text-align: center;
-         padding: 14px 16px;
-         text-decoration: none;
-         font-size: 17px;
-         }
-         /* Change the color of links on hover */
-         .topnav a:hover {
-         background-color: #ddd;
-         color: black;
-         }
-         /* Add a color to the active/current link */
-         .topnav a.active {
-         background-color: #4CAF50;
-         color: white;
-         }
-      </style>
    </head>
    <body>
-      <header class="container-fluid">
-         <div class="row">
-            <div class="col-sm-4">
-               <p>
-               <h3>Project Management System</h3>
-               </p>
-            </div>
-            <div class="col-sm-8">
-               <div class="topnav" id="myTopnav">
-                  <a href="/project">Project</a>
-                  <a href="/employee">Employee</a>
-                  <a href="/company">Company</a>
-                  <a href="/signup">Signup</a>
-                  <a href="/signin">Signin</a>
-               </div>
-            </div>
-         </div>
-      </header>
-      <div class="container-fluid">
-         <div class="row content">
-            <div class="col-sm-8 col-sm-offset-2 sidenav">
-               <div ng-view></div>
-            </div>
-         </div>
-      </div>
-      <footer class="container-fluid">
-         <p class="text-center">@all right reserved</p>
-      </footer>
+      <div ng-view></div>
       <script src="client/app.js"></script>
       <script src="client/js/project/project.js"></script>
       <script src="client/js/employee/employee.js"></script>
+      <script src="client/js/company/company.js"></script>
       <script src="client/js/user/user.signup.js"></script>
       <script src="client/js/user/user.signin.js"></script>
+       <script src="client/js/dashboard.js"></script>
    </body>
 </html>

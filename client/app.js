@@ -1,7 +1,7 @@
 var app = angular.module('myapp', ['ngRoute']);
 app.config(function($routeProvider, $locationProvider) {
     $routeProvider
-    .when('/', {
+    .when('/signin', {
         templateUrl : '../client/view/user/user.signin.html',
         controller : 'userSigninCtrl'
     })
@@ -17,8 +17,12 @@ app.config(function($routeProvider, $locationProvider) {
         templateUrl : 'client/view/employee/employee.html',
         controller : 'employeeCtrl'
     })
+    .when('/dashboard', {
+        templateUrl : 'client/view/dashboard.html',
+        controller : 'dashboardCtrl'
+    })
     .otherwise({
-    	redirectTo : '/'
+    	redirectTo : '/signin'
     });
 
     $locationProvider.html5Mode({enabled: true, requiredBase: false});
