@@ -1,6 +1,7 @@
 {
-  "name": "restapi-client",
+  "name": "restapi",
   "version": "1.0.0",
+  "description": "ui for rest api",
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,17 +10,11 @@
   "author": "vivek",
   "license": "ISC",
   "dependencies": {
+    "angular": "^1.6.4",
+    "angular-route": "^1.6.4",
     "body-parser": "^1.17.2",
-    "bower": "^1.8.0",
-    "express": "^4.15.3"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vivek166/projectui.git"
-  },
-  "bugs": {
-    "url": "https://github.com/vivek166/projectui/issues"
-  },
-  "homepage": "https://github.com/vivek166/projectui#readme",
-  "description": ""
+    "bootstrap": "^3.3.7",
+    "express": "^4.15.3",
+    "jquery": "^3.2.1"
+  }
 }

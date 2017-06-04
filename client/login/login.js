@@ -1,4 +1,4 @@
-app.controller('userSigninCtrl', function($scope, $http, $location){
+app.controller('loginCtrl', function($scope, $http, $location){
 	$scope.signinUser=function(){
 		/*var credential={};
 		credential.userName=$scope.userName;

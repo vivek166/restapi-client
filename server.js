@@ -13,11 +13,12 @@ app.use('/bower_components', express.static(path.join(__dirname, 'bower_componen
 app.use('/client', express.static(path.join(__dirname, 'client')));
 app.use('/project', express.static(path.join(__dirname, 'project')));
 app.use('/employee', express.static(path.join(__dirname, 'employee')));
+app.use('/resource', express.static(path.join(__dirname, 'resource')));
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 app.get('/',function (req,res) {
-    res.sendFile(__dirname+"/client"+"/index.html");
+    res.sendFile(__dirname+"/index.html");
 });
 
 app.post('/',function (req,res) {

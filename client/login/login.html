@@ -1,20 +1,5 @@
-<div ng-controller='userSigninCtrl'>
-   <nav class="navbar navbar-inverse">
-      <div class="container-fluid">
-         <div class="navbar-header">
-            <a class="navbar-brand" href="#">RestApi</a>
-         </div>
-         <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-         </ul>
-         <ul class="nav navbar-nav navbar-right">
-            <li><a href="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="/signin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-         </ul>
-      </div>
-   </nav>
+<div ng-controller='loginCtrl'>
+   <div ng-include="'client/header/header.html'"></div>
    <br>
    <div class="row">
       <div class="col-md-4 col-md-offset-4  col-sm-8 col-sm-offset-2 col-lg-6 col-lg-offset-3">

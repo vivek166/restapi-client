@@ -1,4 +1,4 @@
-app.controller('userSignupCtrl', function($scope, $http, $location){
+app.controller('signupCtrl', function($scope, $http, $location){
 		$scope.skills = [];
 		$scope.addSkill = function() {
 			if( $scope.newSkill){
