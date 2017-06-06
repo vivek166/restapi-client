@@ -20,8 +20,13 @@
                         <input type="password" class="form-control" ng-model="userPassword" placeholder="Password" ng-required="true"/>
                      </div>
                   </div>
-                  <div>
-                     <button class="btn btn-sm btn-primary btn-block" ng-disabled="userSigninForm.$invalid" ng-click="signinUser()">Submit</button>
+                  <div class="row">
+                     <div class="col-lg-6">
+                        <button class="btn btn-sm btn-primary btn-block" ng-disabled="userSigninForm.$invalid" ng-click="signinUser()">Submit</button>
+                     </div>
+                     <div class="col-lg-6">
+                        <button class="btn btn-sm btn-primary btn-block" ng-click="cancel()">Cancel</button>
+                     </div>
                   </div>
                </form>
             </div>

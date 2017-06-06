@@ -1,4 +1,5 @@
 app.controller('signupCtrl', function($scope, $http, $location){
+	$scope.headerStatus=false;
 		$scope.skills = [];
 		$scope.addSkill = function() {
 			if( $scope.newSkill){
@@ -36,6 +37,10 @@ app.controller('signupCtrl', function($scope, $http, $location){
 			alert('user password must be match')
 		}
 		
+	}
+
+	$scope.cancel=function(){
+		$location.path('/home');
 	}
 });
 

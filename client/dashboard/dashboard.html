@@ -2,25 +2,37 @@
    <div class="row">
       <div class="col-lg-3">
          <ul class="nav nav-tabs navbar-inverse nav-stacked"">
-            <li class="active"><a data-toggle="tab" href="#profile">Profile</a></li>
-            <li><a data-toggle="tab" href="#project">Project</a></li>
-            <li><a data-toggle="tab" href="#company">Company</a></li>
-            <li><a data-toggle="tab" href="#employee">Employee</a></li>
+            <li ng-if="common" class="active"><a data-toggle="tab" href="#profile">Profile</a></li>
+            <li ng-if="admin"><a data-toggle="tab" href="#project">Project</a></li>
+            <li ng-if="admin"><a data-toggle="tab" href="#company">Company</a></li>
+            <li ng-if="admin"><a data-toggle="tab" href="#employee">Employee</a></li>
+            <li ng-if="employee"><a data-toggle="tab" href="#task">Task</a></li>
+            <li ng-if="employee"><a data-toggle="tab" href="#notification">Notification</a></li>
+            <li ng-if="employee"><a data-toggle="tab" href="#team">Team Members</a></li>
          </ul>
       </div>
-      <div class="col-lg-7 col-lg-offset-1">
+      <div class="col-lg-9">
          <div class="tab-content">
             <div id="profile" class="tab-pane fade in active">
-               <div ng-include="'client/login/login.html'"></div>
+               <div ng-include="'client/profile/profile.html'"></div>
             </div>
-            <div id="project" class="tab-pane fade">
+            <div id="project" class="tab-pane fade" ng-if="admin">
                <div ng-include="'client/project/project.html'"></div>
             </div>
-            <div id="company" class="tab-pane fade">
+            <div id="company" class="tab-pane fade" ng-if="admin">
                <div ng-include="'client/company/company.html'"></div>
             </div>
-            <div id="employee" class="tab-pane fade">
+            <div id="employee" class="tab-pane fade" ng-if="admin">
                <div ng-include="'client/employee/employee.html'"></div>
+            </div>
+            <div id="task" class="tab-pane fade" ng-if="employee">
+               <div ng-include="'client/task/task.html'"></div>
+            </div>
+            <div id="notification" class="tab-pane fade" ng-if="employee">
+               <div ng-include="'client/notification/notification.html'"></div>
+            </div>
+            <div id="team" class="tab-pane fade" ng-if="employee">
+               <div ng-include="'client/team/team.html'"></div>
             </div>
          </div>
       </div>

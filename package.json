@@ -16,5 +16,8 @@
     "bootstrap": "^3.3.7",
     "express": "^4.15.3",
     "jquery": "^3.2.1"
+  },
+  "devDependencies": {
+    "cors": "^2.8.3"
   }
 }

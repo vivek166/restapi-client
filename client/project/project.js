@@ -19,7 +19,11 @@ app.controller('projectCtrl', function($scope, $http) {
     var getProject = function(start, size, content, pageNumber) {
         $http({
             method: "GET",
-            url: "http://localhost:8080/projectmanagementapp/project?start=" + start + "&size=" + size + "&query=" + content
+            url: "http://localhost:8080/projectmanagementapp/project?start=" + start + "&size=" + size + "&query=" + content,
+            headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer d6101e8d-aeb2-467b-adb5-94276e508ec7'
+                }
         }).then(function mySucces(response) {
             $scope.projects = response.data.data;
             if (pageNumber > 1) {

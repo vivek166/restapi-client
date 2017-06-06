@@ -8,6 +8,9 @@ app.controller('employeeCtrl', function($scope, $http) {
     $scope.preBtnStatus = true;
     $scope.nextBtnStatus = true;
 
+    app.config(function($http) {
+    $httpProvider.defaults.common['Authorization'] = 'Bearer d6101e8d-aeb2-467b-adb5-94276e508ec7';        
+    });
 
     var indexing=function(begin , end, total){
         $scope.begin=begin;
@@ -19,7 +22,10 @@ app.controller('employeeCtrl', function($scope, $http) {
 	$http({
         method : "GET",
         url : "http://localhost:8080/projectmanagementapp/employee?start="+start+"&size="+size+"&query="+content,
-        headers : {'Authorization' : 'h1llifm1cg8tig0cv90lb8bjjk'}
+        headers: {
+                    'Accept': 'application/json',
+                    'authorization': 'Bearer d6101e8d-aeb2-467b-adb5-94276e508ec7'
+                }
     }).then(function mySucces(response) {
         $scope.employees=response.data.data;
         if(pageNumber>1){
