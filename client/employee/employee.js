@@ -21,7 +21,7 @@ app.controller('employeeCtrl', function($scope, $http) {
     var getEmployee=function(start, size, content, pageNumber){
 	$http({
         method : "GET",
-        url : "http://localhost:8080/projectmanagementapp/employee?start="+start+"&size="+size+"&query="+content,
+        url : "http://localhost:8080/projectmanagementapp/user?start="+start+"&size="+size+"&query="+content,
         headers: {
                     'Accept': 'application/json',
                     'authorization': 'Bearer d6101e8d-aeb2-467b-adb5-94276e508ec7'
@@ -75,7 +75,7 @@ app.controller('employeeCtrl', function($scope, $http) {
         $scope.detailsDivStatus=true;
 		$http({
         method : "GET",
-        url : "http://localhost:8080/projectmanagementapp/employee/"+empId
+        url : "http://localhost:8080/projectmanagementapp/user/"+empId
     }).then(function mySucces(response) {
         $scope.employee = response.data;
     }, function myError(response) {
@@ -130,7 +130,7 @@ app.controller('employeeCtrl', function($scope, $http) {
             employee.employeeType = $scope.employeeType;
             $http({
                 method: 'POST',
-                url: 'http://localhost:8080/projectmanagementapp/employee',
+                url: 'http://localhost:8080/projectmanagementapp/user',
                 data: employee,
                 headers: {
                     'Content-Type': 'application/json'
@@ -157,7 +157,7 @@ app.controller('employeeCtrl', function($scope, $http) {
 
             $http({
                 method: 'PUT',
-                url: 'http://localhost:8080/projectmanagementapp/employee/' + empId,
+                url: 'http://localhost:8080/projectmanagementapp/user/' + empId,
                 data: employee,
                 headers: {
                     'Content-Type': 'application/json'
@@ -176,7 +176,7 @@ app.controller('employeeCtrl', function($scope, $http) {
         if (deleteStatus) {
             $http({
                 method: "DELETE",
-                url: "http://localhost:8080/projectmanagementapp/employee/" + empId
+                url: "http://localhost:8080/projectmanagementapp/user/" + empId
             }).then(function mySucces(response) {
                 alert("record deleted");
                 getEmployee((start - 1) * size, size, content, pageNumber);

@@ -1,12 +1,14 @@
 <div ng-controller="profileCtrl">
 	<div class="container-fluid">
 		<h3>Profile</h3>
+		<h2>welcome {{userName}}</h2>
 		<table class="table table-striped">
 			<tr>
 				<td>First Name</td>
 				<td>Last Name</td>
 				<td>Email</td>
 				<td>Department</td>
+				<td>Skills</td>
 				<td>Type</td>
 			</tr>
 			<tr ng-repeat="employee in employees">
@@ -14,6 +16,7 @@
 				<td>{{employee.lastName}}</td>
 				<td>{{employee.email}}</td>
 				<td>{{employee.department}}</td>
+				<td>{{employee.skills}}</td>
 				<td>{{employee.type}}</td>
 			</tr>
 		</table>

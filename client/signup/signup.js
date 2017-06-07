@@ -1,4 +1,4 @@
-app.controller('signupCtrl', function($scope, $http, $location){
+app.controller('signupCtrl', ['$scope', '$http', '$location', 'userInfo', function($scope, $http, $location, userInfo){
 	$scope.headerStatus=false;
 		$scope.skills = [];
 		$scope.addSkill = function() {
@@ -25,13 +25,15 @@ app.controller('signupCtrl', function($scope, $http, $location){
 		user.password=$scope.password;
 			 $http({
                 method: 'POST',
-                url: 'http://localhost:8080/projectmanagementapp/employee',
+                url: 'http://localhost:8080/projectmanagementapp/user',
                 data: user,
                 headers: {
                     'Content-Type': 'application/json'
                 }
             }).then(function(data, status, headers, config) {
-                $location.path('/project');
+            	console.log(data.data);
+            	userInfo.setUser(data.data);
+                $location.path('/dashboard');
             })
 		}else{
 			alert('user password must be match')
@@ -42,6 +44,6 @@ app.controller('signupCtrl', function($scope, $http, $location){
 	$scope.cancel=function(){
 		$location.path('/home');
 	}
-});
+}]);
 
 

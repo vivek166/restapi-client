@@ -5,10 +5,10 @@
 </style>
 
 
-<div ng-controller="projectCtrl">
+<div ng-controller="companyCtrl">
 <br>
     <div>
-        <button class="btn btn-info" ng-click="addRecord()" type="button">Add project</button>
+        <button class="btn btn-info" ng-click="addRecord()" type="button">Add company</button>
     </div><br>
     <div class="input-group">
         <input type="text" class="form-control" ng-model="content" placeholder="search">
@@ -20,32 +20,30 @@
         <table class="table table-striped table-inverse">
             <thead>
                 <tr bgcolor="sky-blue">
-                    <th>Project Description</th>
-                    <th>Project Feature</th>
-                    <th>Project Id</th>
-                    <th>Project Title</th>
-                    <th>Technology Used</th>
+                    <th>Company Id</th>
+                    <th>Company Name</th>
+                    <th>Contact Details</th>
+                    <th>Address</th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="project in projects">
-                    <td>{{project.projectDescription}}</td>
-                    <td>{{project.projectFeature}}</td>
-                    <td>{{project.projectId}}</td>
-                    <td>{{project.projectTitle}}</td>
-                    <td>{{project.technologyUsed}}</td>
-                    <td align="right"><button class="btn btn-primary" title="show project" ng-click="showDetail(project.projectId)"><span class="glyphicon glyphicon-eye-open"></span></button>
-                        <button class="btn btn-primary" title="update project" ng-click="updateDetail(project.projectId)"><span class="glyphicon glyphicon-edit"></span></button>
-                        <button class="btn btn-primary" title="delete project" ng-click="delete(project.projectId)"><span class="glyphicon glyphicon-trash"></span></button>
+                <tr ng-repeat="company in companys">
+                    <td>{{company.companyId}}</td>
+                    <td>{{company.companyName}}</td>
+                    <td>{{company.companyContactNumber}}</td>
+                    <td>{{company.companyAddress}}</td>
+                    <td align="right"><button class="btn btn-primary" title="show company" ng-click="showDetail(company.companyId)"><span class="glyphicon glyphicon-eye-open"></span></button>
+                        <button class="btn btn-primary" title="update company" ng-click="updateDetail(company.companyId)"><span class="glyphicon glyphicon-edit"></span></button>
+                        <button class="btn btn-primary" title="delete company" ng-click="delete(company.companyId)"><span class="glyphicon glyphicon-trash"></span></button>
                     </td>
                 </tr>
             </tbody>
             <tfoot>
                 <tr bgcolor="#626c7c">
-                    <td colspan="2"><button class="btn btn-info" ng-disabled="preBtnStatus" ng-click="getPreviousProject()">Previous</button></td>
+                    <td colspan="2"><button class="btn btn-info" ng-disabled="preBtnStatus" ng-click="getPreviousCompany()">Previous</button></td>
                     <td colspan="2" bgcolor="white" align="center"><b>[{{begin}}-{{end}}] of {{total}}</b></td>
-                    <td colspan="2" align="right"><button class="btn btn-info" ng-disabled="nextBtnStatus" ng-click="getNextProject()">Next</button></td>
+                    <td colspan="2" align="right"><button class="btn btn-info" ng-disabled="nextBtnStatus" ng-click="getNextCompany()">Next</button></td>
                 </tr>
             </tfoot>
         </table>
@@ -53,30 +51,26 @@
         <hr style="border-width: 3px;border-style: inset;">
         <h2 ng-show="saveBtnStatus"><b>Add new record </b></h2>
         <h2 ng-show="updateBtnStatus"><b>Update your record</b></h2>
-        <h2 ng-show="!saveBtnStatus && !updateBtnStatus"><b>Project Details</b></h2>
+        <h2 ng-show="!saveBtnStatus && !updateBtnStatus"><b>company Details</b></h2>
             <form>
-                <div class="form-group" ng-show="projectIdStatus">
-                    <label><h3>Project Id</h3></label>
-                    <input class="form-control" type="text" ng-model="projectId" ng-init="projectId='{{project.projectId}}'" value="{{project.projectId}}" ng-disabled="inputStatus">
+                <div class="form-group" ng-show="companyIdStatus">
+                    <label><h3>company Id</h3></label>
+                    <input class="form-control" type="text" ng-model="companyId" ng-init="companyId='{{company.companyId}}'" value="{{company.companyId}}" ng-disabled="inputStatus">
                 </div>
                 <div class="form-group">
-                    <label><h3>Project Title</h3></label>
-                    <input class="form-control" type="text" ng-model="projectTitle" ng-init="projectTitle='{{project.projectTitle}}'" value="{{project.projectTitle}}" ng-disabled="inputStatus">
+                    <label><h3>company Name</h3></label>
+                    <input class="form-control" type="text" ng-model="companyName" ng-init="companyName='{{company.companyName}}'" value="{{company.companyName}}" ng-disabled="inputStatus">
                 </div>
                 <div class="form-group">
-                    <label><h3>Project Feature</h3></label>
-                    <input class="form-control" type="text" ng-model="projectFeature" ng-init="projectFeature='{{project.projectFeature}}'" value="{{project.projectFeature}}" ng-disabled="inputStatus">
+                    <label><h3>Contact Details</h3></label>
+                    <input class="form-control" type="text" ng-model="companyContactNumber" ng-init="companyContactNumber='{{company.companyContactNumber}}'" value="{{company.companyContactNumber}}" ng-disabled="inputStatus">
                 </div>
                 <div class="form-group">
-                    <label><h3>Technology Used</h3></label>
-                    <input class="form-control" type="text" ng-model="technologyUsed" ng-init="technologyUsed='{{project.technologyUsed}}'" value="{{project.technologyUsed}}" ng-disabled="inputStatus">
-                </div>
-                <div class="form-group">
-                    <label><h3>Project Description</h3></label>
-                    <input class="form-control" type="text" ng-model="projectDescription" ng-init="projectDescription='{{project.projectDescription}}'" value="{{project.projectDescription}}" ng-disabled="inputStatus">
+                    <label><h3>Address</h3></label>
+                    <input class="form-control" type="text" ng-model="companyAddress" ng-init="companyAddress='{{company.companyAddress}}'" value="{{company.companyAddress}}" ng-disabled="inputStatus">
                 </div>
                 <button type="submit" class="btn btn-primary" ng-show="saveBtnStatus" ng-click="save()">Save</button>
-                <button type="submit" class="btn btn-primary" ng-show="updateBtnStatus" ng-click="update(project.projectId)">Update</button>
+                <button type="submit" class="btn btn-primary" ng-show="updateBtnStatus" ng-click="update(company.companyId)">Update</button>
                 <button class="btn btn-primary" ng-show="saveBtnStatus || updateBtnStatus" ng-click="cancel()">Cancel</button>
             </form>
         </div>

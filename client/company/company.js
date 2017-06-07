@@ -1,10 +1,10 @@
-app.controller('projectCtrl', function($scope, $http) {
+app.controller('companyCtrl', function($scope, $http) {
     var pageNumber = 1;
     var start = 1;
     var size = 3;
     var content = "";
     $scope.detailsDivStatus = false;
-    $scope.projectIdStatus = true;
+    $scope.companyIdStatus = true;
     $scope.preBtnStatus = true;
     $scope.nextBtnStatus = true;
 
@@ -16,16 +16,16 @@ app.controller('projectCtrl', function($scope, $http) {
     }
 
 
-    var getProject = function(start, size, content, pageNumber) {
+    var getCompany = function(start, size, content, pageNumber) {
         $http({
             method: "GET",
-            url: "http://localhost:8080/projectmanagementapp/project?start=" + start + "&size=" + size + "&query=" + content,
+            url: "http://localhost:8080/projectmanagementapp/company?start=" + start + "&size=" + size + "&query=" + content,
             headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer d6101e8d-aeb2-467b-adb5-94276e508ec7'
                 }
         }).then(function mySucces(response) {
-            $scope.projects = response.data.data;
+            $scope.companys = response.data.data;
             if (pageNumber > 1) {
                 $scope.preBtnStatus = false;
             } else {
@@ -46,18 +46,18 @@ app.controller('projectCtrl', function($scope, $http) {
         });
     }
 
-    $scope.getNextProject = function() {
+    $scope.getNextCompany = function() {
         $scope.preBtnStatus = false;
         start = start + 1;
         pageNumber = pageNumber + 1;
-        getProject((start - 1) * size, size, content, pageNumber);
+        getCompany((start - 1) * size, size, content, pageNumber);
     }
 
-    $scope.getPreviousProject = function() {
+    $scope.getPreviousCompany = function() {
         $scope.nextBtnStatus = false;
         pageNumber = pageNumber - 1;
         start = start - 1;
-        getProject((start - 1) * size, size, content, pageNumber);
+        getCompany((start - 1) * size, size, content, pageNumber);
     }
 
 
@@ -66,7 +66,7 @@ app.controller('projectCtrl', function($scope, $http) {
         start = 1;
         size = 3;
         content = content + query;
-        getProject((start - 1) * size, size, content, pageNumber);
+        getCompany((start - 1) * size, size, content, pageNumber);
     }
 
 
@@ -75,16 +75,15 @@ app.controller('projectCtrl', function($scope, $http) {
     $scope.save = function() {
         var saveStatus = confirm('Are you sure you want to save');
         if (saveStatus) {
-            var project = {};
-            project.projectTitle = $scope.projectTitle;
-            project.projectFeature = $scope.projectFeature;
-            project.projectDescription = $scope.projectDescription;
-            project.technologyUsed = $scope.technologyUsed;
+            var company = {};
+            company.companyName = $scope.companyName;
+            company.companyContactNumber = $scope.companyContactNumber;
+            company.companyAddress = $scope.companyAddress;
 
             $http({
                 method: 'POST',
-                url: 'http://localhost:8080/projectmanagementapp/project',
-                data: project,
+                url: 'http://localhost:8080/companymanagementapp/company',
+                data: company,
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -98,21 +97,18 @@ app.controller('projectCtrl', function($scope, $http) {
 
     }
 
-    $scope.update = function(projectId) {
+    $scope.update = function(companyId) {
         var saveStatus = confirm('Are you sure you want to update');
         if (saveStatus) {
-            console.log(projectId+$scope.projectTitle+$scope.projectFeature+$scope.projectDescription+$scope.technologyUsed);
-            var project = {};
-            project.projectId = projectId;
-            project.projectTitle = $scope.projectTitle;
-            project.projectFeature = $scope.projectFeature;
-            project.projectDescription = $scope.projectDescription;
-            project.technologyUsed = $scope.technologyUsed;
+            var company = {};
+            company.companyName = $scope.companyName;
+            company.companyContactNumber = $scope.companyContactNumber;
+            company.companyAddress = $scope.companyAddress;
 
             $http({
                 method: 'PUT',
-                url: 'http://localhost:8080/projectmanagementapp/project/' + projectId,
-                data: project,
+                url: 'http://localhost:8080/projectmanagementapp/company/' + companyId,
+                data: company,
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -128,13 +124,13 @@ app.controller('projectCtrl', function($scope, $http) {
 
 
 
-    var getDetail = function(projectId) {
+    var getDetail = function(companyId) {
         $scope.detailsDivStatus = true;
         $http({
             method: "GET",
-            url: "http://localhost:8080/projectmanagementapp/project/" + projectId
+            url: "http://localhost:8080/projectmanagementapp/company/" + companyId
         }).then(function mySucces(response) {
-            $scope.project = response.data;
+            $scope.company = response.data;
         }, function myError(response) {
             $scope.myWelcome = response.statusText;
         })
@@ -143,15 +139,15 @@ app.controller('projectCtrl', function($scope, $http) {
 
 
 
-    $scope.delete = function(projectId) {
+    $scope.delete = function(companyId) {
         var deleteStatus = confirm('Are you sure you want to delete');
         if (deleteStatus) {
             $http({
                 method: "DELETE",
-                url: "http://localhost:8080/projectmanagementapp/project/" + projectId
+                url: "http://localhost:8080/projectmanagementapp/company/" + companyId
             }).then(function mySucces(response) {
                 alert("record deleted");
-                getProject((start - 1) * size, size, content, pageNumber);
+                getCompany((start - 1) * size, size, content, pageNumber);
             }, function myError(response) {
                 $scope.myWelcome = response.statusText;
             });
@@ -163,28 +159,28 @@ app.controller('projectCtrl', function($scope, $http) {
 
 
 
-    $scope.showDetail = function(projectId) {
-        $scope.projectIdStatus = true;
+    $scope.showDetail = function(companyId) {
+        $scope.companyIdStatus = true;
         $scope.saveBtnStatus = false;
         $scope.inputStatus = true;
-        getDetail(projectId);
+        getDetail(companyId);
     }
 
-    $scope.updateDetail = function(projectId) {
+    $scope.updateDetail = function(companyId) {
         $scope.saveBtnStatus = false;
         $scope.updateBtnStatus = true;
-        $scope.projectIdStatus = false;
+        $scope.companyIdStatus = false;
         $scope.inputStatus = false;
-        getDetail(projectId);
+        getDetail(companyId);
     }
 
     $scope.addRecord = function() {
         $scope.saveBtnStatus = true;
         $scope.updateBtnStatus = false;
-        $scope.projectIdStatus = false;
+        $scope.companyIdStatus = false;
         $scope.inputStatus = false;
         $scope.detailsDivStatus = true;
-        $scope.project={};
+        $scope.company={};
     }
 
     $scope.cancel = function() {
@@ -198,5 +194,5 @@ app.controller('projectCtrl', function($scope, $http) {
 
 
     //Execution start from here
-    getProject((start - 1) * size, size, content, pageNumber);
+    getCompany((start - 1) * size, size, content, pageNumber);
 });

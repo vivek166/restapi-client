@@ -1,0 +1,50 @@
+<div ng-controller="assignCtrl">
+	<div class="container-fluid">
+		<form>
+			<table class="table table-hover">
+			<tr>
+				<th colspan="2">Assign Project and Company to Employee</th>
+			</tr>
+			<tr>
+				<td>Employee Id</td>
+				<td>
+					<select class="form-control" ng-required="true" ng-model="employeeId">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Company Id Id</td>
+				<td>
+					<select class="form-control" ng-required="true" ng-model="companyId">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td>Project Id</td>
+				<td>
+					<select class="form-control" ng-required="true" ng-model="projectId">
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+					</select>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2"><button  class="form-control" ng-click="assign()">Assign</button></td>
+			</tr>
+		</table>
+		</form>
+	</div>
+</div>

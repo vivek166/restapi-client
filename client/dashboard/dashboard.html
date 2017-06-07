@@ -2,10 +2,12 @@
    <div class="row">
       <div class="col-lg-3">
          <ul class="nav nav-tabs navbar-inverse nav-stacked"">
+            <li style="text-align:right;"><button ng-click="logout()">Logout</button></li>
             <li ng-if="common" class="active"><a data-toggle="tab" href="#profile">Profile</a></li>
             <li ng-if="admin"><a data-toggle="tab" href="#project">Project</a></li>
             <li ng-if="admin"><a data-toggle="tab" href="#company">Company</a></li>
             <li ng-if="admin"><a data-toggle="tab" href="#employee">Employee</a></li>
+            <li ng-if="admin"><a data-toggle="tab" href="#assign">Assign Task</a></li>
             <li ng-if="employee"><a data-toggle="tab" href="#task">Task</a></li>
             <li ng-if="employee"><a data-toggle="tab" href="#notification">Notification</a></li>
             <li ng-if="employee"><a data-toggle="tab" href="#team">Team Members</a></li>
@@ -24,6 +26,9 @@
             </div>
             <div id="employee" class="tab-pane fade" ng-if="admin">
                <div ng-include="'client/employee/employee.html'"></div>
+            </div>
+            <div id="assign" class="tab-pane fade" ng-if="admin">
+               <div ng-include="'client/assign/assign.html'"></div>
             </div>
             <div id="task" class="tab-pane fade" ng-if="employee">
                <div ng-include="'client/task/task.html'"></div>

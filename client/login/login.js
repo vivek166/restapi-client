@@ -1,11 +1,11 @@
-app.controller('loginCtrl', function($scope, $http, $location){
+app.controller('loginCtrl', function($scope, $http, $location, userInfo){
 	$scope.signinUser=function(){
 		var credential={};
 		credential.userName=$scope.userName;
 		credential.userPassword=$scope.userPassword;
         $http({
                 method: 'POST',
-                url: 'http://localhost:8080/projectmanagementapp/employee/authentication',
+                url: 'http://localhost:8080/projectmanagementapp/user/authentication',
                 data: credential,
                 headers: {
                         'Content-Type': 'application/json',
@@ -13,7 +13,7 @@ app.controller('loginCtrl', function($scope, $http, $location){
                 }
 
         }).then(function mySucces(response) {
-            console.log(response.data.userName);
+            userInfo.setUser(response.data.user);
             $location.path('/dashboard');
         })
         .catch(function myError(response) {
@@ -21,7 +21,17 @@ app.controller('loginCtrl', function($scope, $http, $location){
         });
 	}
 
+    
+
     $scope.cancel=function(){
         $location.path('/home');
     }
-});
+})
+.service('userInfo', function(){
+                this.getUser=function(){
+                    return this.user;
+                }
+                this.setUser=function(user){
+                    this.user=user;
+                }
+            });
