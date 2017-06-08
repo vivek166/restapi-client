@@ -1,6 +1,6 @@
 app.controller('dashboardCtrl', ['userInfo', '$scope', '$location', '$http', function(userInfo, $scope, $location, $http){
 	$scope.common=true;
-	var type = userInfo.getUser().type;
+	var type = userInfo.getUser().user.type;
 
 	if(type=='admin'){
 		$scope.admin=true;
@@ -11,10 +11,10 @@ app.controller('dashboardCtrl', ['userInfo', '$scope', '$location', '$http', fun
 	$scope.logout=function(){
 		$http({
             method: "DELETE",
-            url: "http://localhost:8080/projectmanagementapp/user/"+userInfo.getUser().id+"/deletetoken",
+            url: "http://localhost:8080/projectmanagementapp/user/"+userInfo.getUser().user.id+"/deletetoken",
             headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer d6101e8d-aeb2-467b-adb5-94276e508ec7'
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer '+userInfo.getUser().token
                 }
         }).then(function mySucces(response) {
         	console.log(response.data);

@@ -1,4 +1,4 @@
-app.controller('companyCtrl', function($scope, $http) {
+app.controller('companyCtrl', function($scope, $http, userInfo) {
     var pageNumber = 1;
     var start = 1;
     var size = 3;
@@ -21,8 +21,8 @@ app.controller('companyCtrl', function($scope, $http) {
             method: "GET",
             url: "http://localhost:8080/projectmanagementapp/company?start=" + start + "&size=" + size + "&query=" + content,
             headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer d6101e8d-aeb2-467b-adb5-94276e508ec7'
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer '+userInfo.getUser().token
                 }
         }).then(function mySucces(response) {
             $scope.companys = response.data.data;
@@ -85,7 +85,8 @@ app.controller('companyCtrl', function($scope, $http) {
                 url: 'http://localhost:8080/companymanagementapp/company',
                 data: company,
                 headers: {
-                    'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer '+userInfo.getUser().token
                 }
             }).then(function(data, status, headers, config) {
                 alert("record saved");
@@ -110,7 +111,8 @@ app.controller('companyCtrl', function($scope, $http) {
                 url: 'http://localhost:8080/projectmanagementapp/company/' + companyId,
                 data: company,
                 headers: {
-                    'Content-Type': 'application/json'
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer '+userInfo.getUser().token
                 }
             }).then(function(data, status, headers, config) {
                 alert("record updated");
@@ -128,7 +130,11 @@ app.controller('companyCtrl', function($scope, $http) {
         $scope.detailsDivStatus = true;
         $http({
             method: "GET",
-            url: "http://localhost:8080/projectmanagementapp/company/" + companyId
+            url: "http://localhost:8080/projectmanagementapp/company/" + companyId,
+            headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer '+userInfo.getUser().token
+                }
         }).then(function mySucces(response) {
             $scope.company = response.data;
         }, function myError(response) {
@@ -144,7 +150,11 @@ app.controller('companyCtrl', function($scope, $http) {
         if (deleteStatus) {
             $http({
                 method: "DELETE",
-                url: "http://localhost:8080/projectmanagementapp/company/" + companyId
+                url: "http://localhost:8080/projectmanagementapp/company/" + companyId,
+                headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer '+userInfo.getUser().token
+                }
             }).then(function mySucces(response) {
                 alert("record deleted");
                 getCompany((start - 1) * size, size, content, pageNumber);

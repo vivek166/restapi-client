@@ -6,14 +6,9 @@ app.controller('loginCtrl', function($scope, $http, $location, userInfo){
         $http({
                 method: 'POST',
                 url: 'http://localhost:8080/projectmanagementapp/user/authentication',
-                data: credential,
-                headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer d6101e8d-aeb2-467b-adb5-94276e508ec7'
-                }
-
+                data: credential
         }).then(function mySucces(response) {
-            userInfo.setUser(response.data.user);
+            userInfo.setUser(response.data);
             $location.path('/dashboard');
         })
         .catch(function myError(response) {

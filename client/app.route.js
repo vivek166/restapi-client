@@ -38,10 +38,6 @@ app.config(function($routeProvider, $locationProvider, $httpProvider) {
     });
 
     $locationProvider.html5Mode({enabled: true, requiredBase: false});
-
-    $httpProvider.defaults.headers.post["Content-Type"] = "application/json";
-    $httpProvider.defaults.headers.post["Authorization"] = "Bearer d6101e8d-aeb2-467b-adb5-94276e508ec7";
-
 });
 
 

@@ -2,10 +2,10 @@ app.controller('profileCtrl', ['userInfo', '$scope', '$http', function(userInfo,
 	var getEmployee=function(){
 	$http({
         method : "GET",
-        url : "http://localhost:8080/projectmanagementapp/user/"+userInfo.getUser().id,
+        url : "http://localhost:8080/projectmanagementapp/user/"+userInfo.getUser().user.id,
         headers: {
-                    'Accept': 'application/json',
-                    'authorization': 'Bearer d6101e8d-aeb2-467b-adb5-94276e508ec7'
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer '+userInfo.getUser().token
                 }
     }).then(function mySucces(response) {
         $scope.employees=response.data;

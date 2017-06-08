@@ -4,10 +4,10 @@ app.controller('taskCtrl', function($http, $scope, projectDetails, userInfo){
 	var getProject = function() {
         $http({
             method: "GET",
-            url: "http://localhost:8080/projectmanagementapp/user/"+userInfo.getUser().id+"/assignedproject",
+            url: "http://localhost:8080/projectmanagementapp/user/"+userInfo.getUser().user.id+"/assignedproject",
             headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer d6101e8d-aeb2-467b-adb5-94276e508ec7'
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer '+userInfo.getUser().token
                 }
         }).then(function mySucces(response) {
             $scope.projects = response.data;

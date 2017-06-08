@@ -3,41 +3,21 @@
 		<form>
 			<table class="table table-hover">
 			<tr>
-				<th colspan="2">Assign Project and Company to Employee</th>
+				<th colspan="2">Assign Project to Employee</th>
 			</tr>
 			<tr>
-				<td>Employee Id</td>
+				<td>Employee Name</td>
 				<td>
-					<select class="form-control" ng-required="true" ng-model="employeeId">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
+					<select class="form-control" ng-required="true" ng-model="userId">
+						<option ng-repeat="user in users" value="{{user.id}}">{{user.firstName+" "+user.lastName}}</option>
 					</select>
 				</td>
 			</tr>
 			<tr>
-				<td>Company Id Id</td>
-				<td>
-					<select class="form-control" ng-required="true" ng-model="companyId">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
-					</select>
-				</td>
-			</tr>
-			<tr>
-				<td>Project Id</td>
+				<td>Project Name</td>
 				<td>
 					<select class="form-control" ng-required="true" ng-model="projectId">
-						<option>1</option>
-						<option>2</option>
-						<option>3</option>
-						<option>4</option>
-						<option>5</option>
+						<option ng-repeat="project in projects" value="{{project.id}}">{{project.projectTitle}}</option>
 					</select>
 				</td>
 			</tr>
