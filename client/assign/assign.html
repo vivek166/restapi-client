@@ -1,6 +1,6 @@
 <div ng-controller="assignCtrl">
 	<div class="container-fluid">
-		<form>
+		<form name="assignproject">
 			<table class="table table-hover">
 			<tr>
 				<th colspan="2">Assign Project to Employee</th>
@@ -9,20 +9,22 @@
 				<td>Employee Name</td>
 				<td>
 					<select class="form-control" ng-required="true" ng-model="userId">
-						<option ng-repeat="user in users" value="{{user.id}}">{{user.firstName+" "+user.lastName}}</option>
+						<option ng-repeat="user in users" value="{{user.id}}">{{user.firstName+" "+user.lastName}}({{user.email}})</option>
 					</select>
+					<button ng-click="refreshEmployeeId()"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
 				</td>
 			</tr>
 			<tr>
 				<td>Project Name</td>
 				<td>
 					<select class="form-control" ng-required="true" ng-model="projectId">
-						<option ng-repeat="project in projects" value="{{project.id}}">{{project.projectTitle}}</option>
+						<option ng-repeat="project in projects" value="{{project.projectId}}">{{project.projectTitle}}</option>
 					</select>
+					<button ng-click="refreshProjectId()"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><button  class="form-control" ng-click="assign()">Assign</button></td>
+				<td colspan="2"><button  class="form-control" ng-click="assign()" ng-disabled="assignproject.$invalid">Assign</button></td>
 			</tr>
 		</table>
 		</form>
