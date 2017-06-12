@@ -1,4 +1,7 @@
-app.controller('assignCtrl', function($scope, $http, userInfo){
+app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $http, userInfo){
+    var start=0;
+    var size=5;
+    var content="";
 	$scope.assign=function(){
 		$http({
                 method: 'POST',
@@ -7,18 +10,20 @@ app.controller('assignCtrl', function($scope, $http, userInfo){
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
                 }
-            }).then(function mySucces(response) {
-            alert("project assigned successefully");
+            }).then(function mySucces(response, data, status, headers, config) {
+                if(response.status==200){
+                    alert("project assigned successefully");
+                }
         }, function myError(response) {
            alert("project can not assigned");
         });
 	   }
 
 
-    var getProjects=function(){
+    var getProjects=function(start, size, content){
         $http({
                 method: 'GET',
-                url: "http://localhost:8080/projectmanagementapp/project/filter",
+                url: "http://localhost:8080/projectmanagementapp/project/filter?start="+start+"&size="+size+"&query="+content,
                 headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
@@ -29,10 +34,10 @@ app.controller('assignCtrl', function($scope, $http, userInfo){
             $scope.myWelcome = response.statusText;
         });
     }
-    var getUsers=function(){
+    var getUsers=function(start, size, content){
         $http({
                 method: 'GET',
-                url: "http://localhost:8080/projectmanagementapp/user/filter?query=employee",
+                url: "http://localhost:8080/projectmanagementapp/user/filter?start="+start+"&size="+size+"&query="+content,
                 headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
@@ -45,10 +50,13 @@ app.controller('assignCtrl', function($scope, $http, userInfo){
     }
 
     $scope.refreshEmployeeId=function(){
-        getUsers();
+        content=$scope.searchUser;
+        getUsers(start, size, content);
     }
     $scope.refreshProjectId=function(){
-        getProjects();
+        content=$scope.searchProject;
+        getProjects(start, size, content);
     }
-    
-});
+    getUsers(start, size, content);
+   // getProjects(start, size, content);
+}]);
