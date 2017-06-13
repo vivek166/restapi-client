@@ -9,6 +9,7 @@ app.controller('profileCtrl', ['userInfo', '$scope', '$http', function(userInfo,
                 }
     }).then(function mySucces(response) {
         $scope.employees=response.data;
+        $scope.userName=response.data.firstName+" "+ response.data.lastName;
     }, function myError(response) {
         $scope.myWelcome = response.statusText;
     });

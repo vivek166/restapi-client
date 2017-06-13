@@ -138,6 +138,11 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
                 }
             }).then(function(data, status, headers, config) {
                 alert("record saved");
+                employee.empId = "";
+                employee.empName = "";
+                employee.empDepartment = "";
+                employee.empSubjects = "";
+                employee.employeeType = "";
                 $scope.detailsDivStatus = false;
             })
         } else {

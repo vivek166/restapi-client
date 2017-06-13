@@ -2,6 +2,7 @@ var express=require('express');
 var app=express();
 var bodyParser=require('body-parser');
 var path=require('path');
+/*var uibs = require('angular-ui-bootstrap');*/
 var cors = require('cors')
 
 var app = express()

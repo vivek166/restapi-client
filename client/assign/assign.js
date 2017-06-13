@@ -10,15 +10,12 @@ app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $h
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
                 }
-            }).then(function mySucces(response, data, status, headers, config) {
-                if(response.status==200){
+            }).then(function mySucces(response) {
                     alert("project assigned successefully");
-                }
         }, function myError(response) {
            alert("project can not assigned");
         });
-	   }
-
+	   };
 
     var getProjects=function(start, size, content){
         $http({
@@ -33,7 +30,7 @@ app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $h
         }, function myError(response) {
             $scope.myWelcome = response.statusText;
         });
-    }
+    };
     var getUsers=function(start, size, content){
         $http({
                 method: 'GET',
@@ -47,16 +44,16 @@ app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $h
         }, function myError(response) {
             $scope.myWelcome = response.statusText;
         });
-    }
+    };
 
     $scope.refreshEmployeeId=function(){
         content=$scope.searchUser;
         getUsers(start, size, content);
-    }
+    };
     $scope.refreshProjectId=function(){
         content=$scope.searchProject;
         getProjects(start, size, content);
-    }
+    };
     getUsers(start, size, content);
-   // getProjects(start, size, content);
+    getProjects(start, size, content);
 }]);

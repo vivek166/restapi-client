@@ -91,6 +91,10 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
                 }
             }).then(function(data, status, headers, config) {
                 alert("record saved");
+                project.projectTitle = "";
+                project.projectFeature = "";
+                project.projectDescription = "";
+                project.technologyUsed = "";
                 $scope.detailsDivStatus = false;
             })
         } else {

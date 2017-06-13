@@ -2,42 +2,42 @@
    <div class="row">
       <div class="col-lg-3">
          <ul class="nav nav-tabs navbar-inverse nav-stacked"">
-            <li style="text-align:right;"><button ng-click="logout()">Logout</button></li>
-            <li ng-if="common" class="active"><a data-toggle="tab" href="#profile">Profile</a></li>
-            <li ng-if="admin"><a data-toggle="tab" href="#project">Project</a></li>
-            <li ng-if="admin"><a data-toggle="tab" href="#company">Company</a></li>
-            <li ng-if="admin"><a data-toggle="tab" href="#employee">Employee</a></li>
-            <li ng-if="admin"><a data-toggle="tab" href="#assign">Assign Task</a></li>
-            <li ng-if="employee"><a data-toggle="tab" href="#task">Task</a></li>
-            <li ng-if="employee"><a data-toggle="tab" href="#notification">Notification</a></li>
-            <li ng-if="employee"><a data-toggle="tab" href="#team">Team Members</a></li>
+            <li ng-if="admin || employee" class="active"><a data-toggle="tab" ng-click="includeProfile()" data-target="#profile">Profile</a></li>
+            <li ng-if="admin"><a data-toggle="tab" ng-click="includeProject()" data-target="#project">Project</a></li>
+            <li ng-if="admin"><a data-toggle="tab" ng-click="includeCompany()" data-target="#company">Company</a></li>
+            <li ng-if="admin"><a data-toggle="tab" ng-click="includeEmployee()" data-target="#employee">Employee</a></li>
+            <li ng-if="admin"><a data-toggle="tab" ng-click="includeAssign()" data-target="#assign">Assign Task</a></li>
+            <li ng-if="employee"><a data-toggle="tab" ng-click="includeTask()" data-target="#task">Task</a></li>
+            <li ng-if="employee"><a data-toggle="tab" ng-click="includeNotification()" data-target="#notification">Notification</a></li>
+            <li ng-if="employee"><a data-toggle="tab" ng-click="includeTeam()" data-target="#team">Team Members</a></li>
+            <li ng-if="admin || employee"><a ng-click="logout()">Logout</a></li>
          </ul>
       </div>
       <div class="col-lg-9">
          <div class="tab-content">
             <div id="profile" class="tab-pane fade in active">
-               <div ng-include="'client/profile/profile.html'"></div>
+               <div ng-include="profileTemplate"></div>
             </div>
-            <div id="project" class="tab-pane fade" ng-if="admin">
-               <div ng-include="'client/project/project.html'"></div>
+            <div id="project" class="tab-pane fade">
+               <div  ng-include="prjectTemplate"></div>
             </div>
-            <div id="company" class="tab-pane fade" ng-if="admin">
-               <div ng-include="'client/company/company.html'"></div>
+            <div id="company" class="tab-pane fade">
+               <div  ng-include="companyTemplate"></div>
             </div>
-            <div id="employee" class="tab-pane fade" ng-if="admin">
-               <div ng-include="'client/employee/employee.html'"></div>
+            <div id="employee" class="tab-pane fade">
+               <div  ng-include="employeeTemplate"></div>
             </div>
-            <div id="assign" class="tab-pane fade" ng-if="admin">
-               <div ng-include="'client/assign/assign.html'"></div>
+            <div id="assign" class="tab-pane fade">
+               <div  ng-include="assignTemplate"></div>
             </div>
-            <div id="task" class="tab-pane fade" ng-if="employee">
-               <div ng-include="'client/task/task.html'"></div>
+            <div id="task" class="tab-pane fade">
+               <div  ng-include="taskTemplate"></div>
             </div>
-            <div id="notification" class="tab-pane fade" ng-if="employee">
-               <div ng-include="'client/notification/notification.html'"></div>
+            <div id="notification" class="tab-pane fade">
+               <div  ng-include="notificationTemplate"></div>
             </div>
-            <div id="team" class="tab-pane fade" ng-if="employee">
-               <div ng-include="'client/team/team.html'"></div>
+            <div id="team" class="tab-pane fade">
+               <div ng-include="teamTemplate"></div>
             </div>
          </div>
       </div>
