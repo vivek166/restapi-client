@@ -19,7 +19,7 @@ app.controller('companyCtrl', function($scope, $http, userInfo) {
     var getCompany = function(start, size, content, pageNumber) {
         $http({
             method: "GET",
-            url: "http://localhost:8080/projectmanagementapp/company?start=" + start + "&size=" + size + "&query=" + content,
+            url: "http://localhost:8080/projectmanagementapp/company?start=" + start + "&size=" + size + "&companyid="+userInfo.getUser().user.company.companyId+"&query=" + content,
             headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
@@ -105,6 +105,7 @@ app.controller('companyCtrl', function($scope, $http, userInfo) {
             company.companyName = $scope.companyName;
             company.companyContactNumber = $scope.companyContactNumber;
             company.companyAddress = $scope.companyAddress;
+            company.companyId = userInfo.getUser().user.company.companyId;
 
             $http({
                 method: 'PUT',

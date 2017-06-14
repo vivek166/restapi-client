@@ -11,13 +11,13 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
     var indexing=function(begin , end, total){
         $scope.begin=begin;
         $scope.end=end;
-        $scope.total=total;
+        $scope.total=total; 
     }
 
     var getEmployee=function(start, size, content, pageNumber){
 	$http({
         method : "GET",
-        url : "http://localhost:8080/projectmanagementapp/user?start="+start+"&size="+size+"&query="+content,
+        url : "http://localhost:8080/projectmanagementapp/user?start="+start+"&size="+size+"&companyid="+userInfo.getUser().user.company.companyId+"&query="+content,
         headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
@@ -123,11 +123,13 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
         var saveStatus = confirm('Are you sure you want to save');
         if (saveStatus) {
             var employee = {};
-            employee.empId = $scope.empId;
-            employee.empName = $scope.empName;
-            employee.empDepartment = $scope.empDepartment;
-            employee.empSubjects = $scope.empSubjects;
-            employee.employeeType = $scope.employeeType;
+            employee.firstName = $scope.fName;
+            employee.lastName = $scope.lName;
+            employee.email = $scope.email;
+            employee.mobile = $scope.mobile;
+            employee.skills = $scope.skills;
+            employee.type = $scope.type;
+            employee.company= userInfo.getUser().user.company;
             $http({
                 method: 'POST',
                 url: 'http://localhost:8080/projectmanagementapp/user',
@@ -138,11 +140,12 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
                 }
             }).then(function(data, status, headers, config) {
                 alert("record saved");
-                employee.empId = "";
-                employee.empName = "";
-                employee.empDepartment = "";
-                employee.empSubjects = "";
-                employee.employeeType = "";
+                $scope.fName="";
+                $scope.lName="";
+                $scope.email="";
+                $scope.mobile="";
+                $scope.skills="";
+                $scope.type="";
                 $scope.detailsDivStatus = false;
             })
         } else {
@@ -155,11 +158,12 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
         var saveStatus = confirm('Are you sure you want to update');
         if (saveStatus) {
            var employee = {};
-            employee.empId = empId;
-            employee.empName = $scope.empName;
-            employee.empDepartment = $scope.empDepartment;
-            employee.empSubjects = $scope.empSubjects;
-            employee.employeeType = $scope.employeeType;
+            employee.empId = user.getUser().user.id;
+            employee.firstName = $scope.fName;
+            employee.lastName = $scope.lName;
+            employee.mobile = $scope.mobile;
+            employee.skills = $scope.skills;
+            employee.type = $scope.type;
 
             $http({
                 method: 'PUT',

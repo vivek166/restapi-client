@@ -20,7 +20,7 @@ app.controller('signupCtrl', ['$scope', '$http', '$location', 'userInfo', functi
 		user.companyName=$scope.companyName;
 		user.email=$scope.email;
 		user.skills=$scope.skills.toString();
-		user.department=$scope.department;
+		user.mobile=$scope.mobile;
 		user.type=$scope.type;
 		user.password=$scope.password;
 			 $http({
@@ -41,5 +41,3 @@ app.controller('signupCtrl', ['$scope', '$http', '$location', 'userInfo', functi
 		$location.path('/home');
 	}
 }]);
-
-

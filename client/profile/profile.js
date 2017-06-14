@@ -8,6 +8,7 @@ app.controller('profileCtrl', ['userInfo', '$scope', '$http', function(userInfo,
                         'Authorization': 'Bearer '+userInfo.getUser().token
                 }
     }).then(function mySucces(response) {
+        console.log(userInfo.getUser());
         $scope.employees=response.data;
         $scope.userName=response.data.firstName+" "+ response.data.lastName;
     }, function myError(response) {
