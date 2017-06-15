@@ -31,8 +31,8 @@ app.controller('signupCtrl', ['$scope', '$http', '$location', 'userInfo', functi
                         'Content-Type': 'application/json'
                 }
             }).then(function(data, status, headers, config) {
-            	userInfo.setUser(data.data);
-                $location.path('/dashboard');
+            	//userInfo.setUser(data.data);
+                $location.path('/login');
             })
 		}else{
 			alert('user password must be match')

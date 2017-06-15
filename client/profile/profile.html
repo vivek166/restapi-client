@@ -1,32 +1,79 @@
 <div ng-controller="profileCtrl">
-	<div class="container-fluid">
-		<h3>Profile</h3>
-		<h2>welcome {{userName}}</h2>
-		<table class="table table-striped">
-			<tr>
-				<td>First Name</td>
-				<td>{{employees.firstName}}</td>
-			</tr>
-			<tr>
-				<td>Last Name</td>
-				<td>{{employees.lastName}}</td>
-			</tr>
-			<tr>
-				<td>Email</td>
-				<td>{{employees.email}}</td>
-			</tr>
-			<tr>
-				<td>Mobile</td>
-				<td>{{employees.mobile}}</td>
-			</tr>
-			<tr>
-				<td>Skills</td>
-				<td>{{employees.skills}}</td>
-			</tr>
-			<tr>
-				<td>Type</td>
-				<td>{{employees.type}}</td>
-			</tr>
-		</table>
-	</div>
+   <ul class="nav nav-tabs navbar-inverse">
+      <li class="active"><a data-toggle="tab" data-target="#user">{{userName}}</a></li>
+      <li><a data-toggle="tab" data-target="#account">Account</a></li>
+      <li><a ng-click="logout()">Logout</a></li>
+   </ul>
+   <div class="tab-content">
+      <div id="user" class="tab-pane fade in active">
+         <h3>Profile</h3>
+         <form>
+            <div class="form-group">
+               <label>
+                  <h3>First Name</h3>
+               </label>
+               <input class="form-control" type="text" ng-model="firstName" ng-init="firstName='{{employee.firstName}}'" value="{{employee.firstName}}" ng-disabled="inputStatus">
+            </div>
+            <div class="form-group">
+               <label>
+                  <h3>Last Name</h3>
+               </label>
+               <input class="form-control" type="text" ng-model="lastName" ng-init="lastName='{{employee.lastName}}'" value="{{employee.lastName}}" ng-disabled="inputStatus">
+            </div>
+            <div class="form-group" ng-show="saveBtnStatus">
+               <label>
+                  <h3>Email</h3>
+               </label>
+               <input class="form-control" type="text" ng-model="email" ng-init="email='{{employee.email}}'" value="{{employee.email}}" ng-disabled="inputStatus">
+            </div>
+            <div class="form-group">
+               <label>
+                  <h3>Mobile</h3>
+               </label>
+               <input class="form-control" type="text" ng-model="mobile" ng-init="mobile='{{employee.mobile}}'" value="{{employee.mobile}}" ng-disabled="inputStatus">
+            </div>
+            <div class="form-group">
+               <label>
+                  <h3>Password</h3>
+               </label>
+               <input class="form-control" type="text" ng-model="password" ng-init="password='{{employee.password}}'" value="{{employee.password}}" ng-disabled="inputStatus">
+            </div>
+            <div class="form-group">
+               <label>
+                  <h3>Skills</h3>
+               </label>
+               <input class="form-control" type="text" ng-model="skills" ng-init="skills='{{employee.skills}}'" value="{{employee.skills}}" ng-disabled="inputStatus">
+            </div>
+            <div class="form-group">
+               <label>
+                  <h3>Type</h3>
+               </label>
+               <input class="form-control" type="text" ng-model="type" ng-init="type='{{employee.type}}'" value="{{employee.type}}" ng-disabled="inputStatus">
+            </div>
+         </form>
+      </div>
+      <div id="account" class="tab-pane fade">
+         <h3>Account</h3>
+         <h4>change your password</h4>
+         <form>
+            <table class="table table-striped">
+               <tr>
+                  <td>old password</td>
+                  <td><input type="password" name="oldPassword" ng-model="oldPassword" ng-required="true"></td>
+               </tr>
+               <tr>
+                  <td>New password</td>
+                  <td><input type="password" name="newPassword" ng-model="newPassword" ng-required="true"></td>
+               </tr>
+               <tr>
+                  <td>Confirm password</td>
+                  <td><input type="password" name="cnfrmPassword" ng-model="cnfrmPassword" ng-required="true"></td>
+               </tr>
+               <tr>
+                  <td colspan="2"><button  ng-click="changePassword()">Change</button></td>
+               </tr>
+            </table>
+         </form>
+      </div>
+   </div>
 </div>

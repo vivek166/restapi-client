@@ -107,13 +107,13 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
     $scope.update = function(projectId) {
         var saveStatus = confirm('Are you sure you want to update');
         if (saveStatus) {
-            console.log(projectId+$scope.projectTitle+$scope.projectFeature+$scope.projectDescription+$scope.technologyUsed);
             var project = {};
             project.projectId = projectId;
             project.projectTitle = $scope.projectTitle;
             project.projectFeature = $scope.projectFeature;
             project.projectDescription = $scope.projectDescription;
             project.technologyUsed = $scope.technologyUsed;
+            project.company=userInfo.getUser().user.company;
 
             $http({
                 method: 'PUT',

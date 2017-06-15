@@ -7,9 +7,6 @@
 
 <div ng-controller="companyCtrl">
 <br>
-    <div>
-        <button class="btn btn-info" ng-click="addRecord()" type="button">Add company</button>
-    </div><br>
     <div class="input-group">
         <input type="text" class="form-control" ng-model="content" placeholder="search">
         <span class="input-group-btn">
@@ -49,9 +46,8 @@
         </table>
         <div id="details" ng-show="detailsDivStatus">
         <hr style="border-width: 3px;border-style: inset;">
-        <h2 ng-show="saveBtnStatus"><b>Add new record </b></h2>
         <h2 ng-show="updateBtnStatus"><b>Update your record</b></h2>
-        <h2 ng-show="!saveBtnStatus && !updateBtnStatus"><b>company Details</b></h2>
+        <h2 ng-show="!updateBtnStatus"><b>company Details</b></h2>
             <form>
                 <div class="form-group" ng-show="companyIdStatus">
                     <label><h3>company Id</h3></label>
@@ -69,9 +65,8 @@
                     <label><h3>Address</h3></label>
                     <input class="form-control" type="text" ng-model="companyAddress" ng-init="companyAddress='{{company.companyAddress}}'" value="{{company.companyAddress}}" ng-disabled="inputStatus">
                 </div>
-                <button type="submit" class="btn btn-primary" ng-show="saveBtnStatus" ng-click="save()">Save</button>
                 <button type="submit" class="btn btn-primary" ng-show="updateBtnStatus" ng-click="update(company.companyId)">Update</button>
-                <button class="btn btn-primary" ng-show="saveBtnStatus || updateBtnStatus" ng-click="cancel()">Cancel</button>
+                <button class="btn btn-primary" ng-show="updateBtnStatus" ng-click="cancel()">Cancel</button>
             </form>
         </div>
 

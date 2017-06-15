@@ -172,13 +172,11 @@ app.controller('companyCtrl', function($scope, $http, userInfo) {
 
     $scope.showDetail = function(companyId) {
         $scope.companyIdStatus = true;
-        $scope.saveBtnStatus = false;
         $scope.inputStatus = true;
         getDetail(companyId);
     }
 
     $scope.updateDetail = function(companyId) {
-        $scope.saveBtnStatus = false;
         $scope.updateBtnStatus = true;
         $scope.companyIdStatus = false;
         $scope.inputStatus = false;
@@ -186,7 +184,6 @@ app.controller('companyCtrl', function($scope, $http, userInfo) {
     }
 
     $scope.addRecord = function() {
-        $scope.saveBtnStatus = true;
         $scope.updateBtnStatus = false;
         $scope.companyIdStatus = false;
         $scope.inputStatus = false;
