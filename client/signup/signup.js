@@ -26,7 +26,10 @@ app.controller('signupCtrl', ['$scope', '$http', '$location', 'userInfo', functi
 			 $http({
                 method: 'POST',
                 url: 'http://localhost:8080/projectmanagementapp/user',
-                data: user
+                data: user,
+                headers: {
+                        'Content-Type': 'application/json'
+                }
             }).then(function(data, status, headers, config) {
             	userInfo.setUser(data.data);
                 $location.path('/dashboard');

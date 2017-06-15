@@ -22,7 +22,6 @@
             <tr bgcolor="sky-blue">
                <th>Project Description</th>
                <th>Project Feature</th>
-               <th>Project Id</th>
                <th>Project Title</th>
                <th>Technology Used</th>
                <th></th>
@@ -32,7 +31,6 @@
             <tr ng-repeat="project in projects">
                <td>{{project.projectDescription}}</td>
                <td>{{project.projectFeature}}</td>
-               <td>{{project.projectId}}</td>
                <td>{{project.projectTitle}}</td>
                <td>{{project.technologyUsed}}</td>
                <td align="right"><button class="btn btn-primary" title="show project" ng-click="showDetail(project.projectId)"><span class="glyphicon glyphicon-eye-open"></span></button>
@@ -55,12 +53,6 @@
          <h2 ng-show="updateBtnStatus"><b>Update your record</b></h2>
          <h2 ng-show="!saveBtnStatus && !updateBtnStatus"><b>Project Details</b></h2>
          <form>
-            <div class="form-group" ng-show="projectIdStatus">
-               <label>
-                  <h3>Project Id</h3>
-               </label>
-               <input class="form-control" type="text" ng-model="projectId" ng-init="projectId='{{project.projectId}}'" value="{{project.projectId}}" ng-disabled="inputStatus">
-            </div>
             <div class="form-group">
                <label>
                   <h3>Project Title</h3>

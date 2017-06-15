@@ -20,7 +20,7 @@ app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $h
     var getProjects=function(start, size, content){
         $http({
                 method: 'GET',
-                url: "http://localhost:8080/projectmanagementapp/project/filter?start="+start+"&size="+size+"&query="+content,
+                url: "http://localhost:8080/projectmanagementapp/project/filter?start="+start+"&size="+size+"&companyid="+userInfo.getUser().user.company.companyId+"&query="+content,
                 headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
@@ -34,7 +34,7 @@ app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $h
     var getUsers=function(start, size, content){
         $http({
                 method: 'GET',
-                url: "http://localhost:8080/projectmanagementapp/user/filter?start="+start+"&size="+size+"&query="+content,
+                url: "http://localhost:8080/projectmanagementapp/user/filter?start="+start+"&size="+size+"&companyid="+userInfo.getUser().user.company.companyId+"&query="+content,
                 headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token

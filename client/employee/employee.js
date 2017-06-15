@@ -123,11 +123,12 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
         var saveStatus = confirm('Are you sure you want to save');
         if (saveStatus) {
             var employee = {};
-            employee.firstName = $scope.fName;
-            employee.lastName = $scope.lName;
+            employee.firstName = $scope.firstName;
+            employee.lastName = $scope.lastName;
             employee.email = $scope.email;
             employee.mobile = $scope.mobile;
             employee.skills = $scope.skills;
+            employee.password = $scope.password;
             employee.type = $scope.type;
             employee.company= userInfo.getUser().user.company;
             $http({

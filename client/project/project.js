@@ -19,7 +19,7 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
     var getProject = function(start, size, content, pageNumber) {
         $http({
             method: "GET",
-            url: "http://localhost:8080/projectmanagementapp/project?start=" + start + "&size=" + size + "&query=" + content,
+            url: "http://localhost:8080/projectmanagementapp/project?start=" + start + "&size=" + size + "&companyid="+userInfo.getUser().user.company.companyId+"&query=" + content,
             headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
@@ -80,6 +80,7 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
             project.projectFeature = $scope.projectFeature;
             project.projectDescription = $scope.projectDescription;
             project.technologyUsed = $scope.technologyUsed;
+            project.company=userInfo.getUser().user.company;
 
             $http({
                 method: 'POST',
@@ -91,11 +92,11 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
                 }
             }).then(function(data, status, headers, config) {
                 alert("record saved");
-                project.projectTitle = "";
-                project.projectFeature = "";
-                project.projectDescription = "";
-                project.technologyUsed = "";
-                $scope.detailsDivStatus = false;
+            $scope.projectTitle="";
+            $scope.projectFeature="";
+            $scope.projectDescription="";
+            $scope.technologyUsed="";
+            $scope.detailsDivStatus = false;
             })
         } else {
             alert('record not saved');

@@ -63,11 +63,11 @@
             <form>
                 <div class="form-group">
                     <label><h3>First Name</h3></label>
-                    <input class="form-control" type="text" ng-model="fName" ng-init="fName='{{employee.firstName}}'" value="{{employee.firstName}}" ng-disabled="inputStatus">
+                    <input class="form-control" type="text" ng-model="firstName" ng-init="firstName='{{employee.firstName}}'" value="{{employee.firstName}}" ng-disabled="inputStatus">
                 </div>
                 <div class="form-group">
                     <label><h3>Last Name</h3></label>
-                    <input class="form-control" type="text" ng-model="lName" ng-init="lName='{{employee.lastName}}'" value="{{employee.lastName}}" ng-disabled="inputStatus">
+                    <input class="form-control" type="text" ng-model="lastName" ng-init="lastName='{{employee.lastName}}'" value="{{employee.lastName}}" ng-disabled="inputStatus">
                 </div>
                 <div class="form-group" ng-show="saveBtnStatus">
                     <label><h3>Email</h3></label>
@@ -78,8 +78,12 @@
                     <input class="form-control" type="text" ng-model="mobile" ng-init="mobile='{{employee.mobile}}'" value="{{employee.mobile}}" ng-disabled="inputStatus">
                 </div>
                 <div class="form-group">
+                    <label><h3>Password</h3></label>
+                    <input class="form-control" type="text" ng-model="password" ng-init="password='{{employee.password}}'" value="{{employee.password}}" ng-disabled="inputStatus">
+                </div>
+                <div class="form-group">
                     <label><h3>Skills</h3></label>
-                    <input class="form-control" type="text" ng-model="empSubjects" ng-init="empSubjects='{{employee.skills}}'" value="{{employee.skills}}" ng-disabled="inputStatus">
+                    <input class="form-control" type="text" ng-model="skills" ng-init="skills='{{employee.skills}}'" value="{{employee.skills}}" ng-disabled="inputStatus">
                 </div>
                 <div class="form-group">
                     <label><h3>Type</h3></label>
