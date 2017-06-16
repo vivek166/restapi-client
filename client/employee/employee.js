@@ -127,9 +127,8 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
             employee.lastName = $scope.lastName;
             employee.email = $scope.email;
             employee.mobile = $scope.mobile;
-            employee.skills = $scope.skills;
             employee.password = $scope.password;
-            employee.type = $scope.type;
+            employee.type = "employee";
             employee.company= userInfo.getUser().user.company;
             $http({
                 method: 'POST',
@@ -141,12 +140,11 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
                 }
             }).then(function(data, status, headers, config) {
                 alert("record saved");
-                $scope.fName="";
-                $scope.lName="";
+                $scope.firstName="";
+                $scope.lastName="";
                 $scope.email="";
                 $scope.mobile="";
-                $scope.skills="";
-                $scope.type="";
+                $scope.password="";
                 $scope.detailsDivStatus = false;
             })
         } else {
@@ -160,11 +158,11 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
         if (saveStatus) {
            var employee = {};
             employee.empId = user.getUser().user.id;
-            employee.firstName = $scope.fName;
-            employee.lastName = $scope.lName;
+            employee.firstName = $scope.firstName;
+            employee.lastName = $scope.lastName;
             employee.mobile = $scope.mobile;
-            employee.skills = $scope.skills;
-            employee.type = $scope.type;
+            employee.type = "employee";
+            employee.company= userInfo.getUser().user.company;
 
             $http({
                 method: 'PUT',

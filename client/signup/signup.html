@@ -25,47 +25,22 @@
                <div class="form-group">
                   <label>Email Address*</label>
                   <input type="email" placeholder="Enter Email Address Here.." name="email" ng-model="email" class="form-control" ng-required="true">
-                  <span ng-show="userRegistrationForm.email.$touched">*email is required.</span>
-                  <span ng-show="userRegistrationForm.email.$invalid">*email is invalid.</span>
+                  <span ng-show="userRegistrationForm.password.$touched && userRegistrationForm.email.$invalid">*email is invalid.</span>
                </div>
                <div class="row">
-               <div class="col-sm-6 form-group">
-                  <label>Mobile*</label>
-                  <input type="number" placeholder="Enter mobile number Here.." name="mobile" ng-model="mobile" class="form-control" ng-required="true">
-                  <span ng-show="userRegistrationForm.mobile.$touched && userRegistrationForm.mobile.$invalid">*mobile is required.</span>
+               <div class="col-sm-12 form-group">
+                  <label>Mobile</label>
+                  <input type="text" placeholder="Enter mobile number Here.." name="mobile" ng-model="mobile" class="form-control">
                </div>
-               <div class="col-sm-6 form-group">
-                  <label>Type*</label>
-                   <select class="form-control" name="typeDrpDwn"ng-required="true" ng-model="type">
-                     <option value="admin">Admin</option>
-                  </select>
-                  <span ng-show="userRegistrationForm.typeDrpDwn.$touched && userRegistrationForm.typeDrpDwn.$invalid">*type is required.</span>
-               </div>
-               </div>
-               <div class="form-group">
-                  <label>Add your Skills*</label>
-                   <div class="input-group">
-                      <input type="text" class="form-control" name="skills" ng-model="newSkill" placeholder="add your skills">
-                     <span class="input-group-btn">
-                     <button class="btn btn-secondary" type="button" ng-click="addSkill()">Add</button>
-                     </span>
-                     </div>
-                     <ul style="list-style-type: none">
-                        <li ng-repeat="skill in skills" class="list-group-item list-group-item-info">
-                        <span class="glyphicon glyphicon-remove" ng-click="deleteSkill($index)"></span>
-                        <span>{{skill}}</span>
-                        </li>
-                     </ul>
-                     <span ng-show="userRegistrationForm.skills.$touched && userRegistrationForm.skills.$invalid">*skills is required.</span>
                </div>
                <div class="row">
                   <div class="col-sm-6 form-group">
-                     <label>Password</label>
+                     <label>Password*</label>
                      <input type="password" placeholder="Enter Password Here.." name="password" ng-model="password"  class="form-control" ng-required="true">
                      <span ng-show="userRegistrationForm.password.$touched && userRegistrationForm.password.$invalid">*password is required.</span>
                   </div>
                   <div class="col-sm-6 form-group">
-                     <label>Confirm Password</label>
+                     <label>Confirm Password*</label>
                      <input type="password" placeholder="Please Confirm Password Here.." name="cnfrmPass" ng-model="confirmPassword"  class="form-control" ng-required="true">
                      <span ng-show="userRegistrationForm.cnfrmPass.$touched && userRegistrationForm.cnfrmPass.$invalid">*confirmPassword is required.</span>
                   </div>

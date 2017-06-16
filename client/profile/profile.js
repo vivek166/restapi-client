@@ -1,5 +1,9 @@
 app.controller('profileCtrl', ['userInfo', '$scope', '$http', '$location', function(userInfo, $scope, $http, $location){
     $scope.inputStatus=true;
+
+    $scope.includeCompany=function(){
+        $scope.companyTemplate="client/company/company.html";
+    };
 	var getEmployee=function(){
 	$http({
         method : "GET",
@@ -95,6 +99,22 @@ app.controller('profileCtrl', ['userInfo', '$scope', '$http', '$location', funct
              $location.path('/login');
         });
     }
+
+    $scope.updateDetail = function() {
+        $scope.companyIdStatus=false;
+        $scope.updateBtnStatus = true;
+        $scope.inputStatus = false;
+    }
+
+    $scope.cancel = function() {
+        var cancelStatus = confirm('Are you sure! you want to cancel');
+        if (cancelStatus) {
+        $scope.companyIdStatus=true;
+        $scope.updateBtnStatus = false;
+        $scope.inputStatus = true;
+        } else {
+            $scope.detailsDivStatus = true;
+        }
+    }
     getEmployee();
 }]);
-

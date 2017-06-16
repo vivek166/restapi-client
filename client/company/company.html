@@ -3,51 +3,10 @@
         border: none;
     }
 </style>
-
-
 <div ng-controller="companyCtrl">
-<br>
-    <div class="input-group">
-        <input type="text" class="form-control" ng-model="content" placeholder="search">
-        <span class="input-group-btn">
-            <button class="btn btn-info" ng-click="search(content)" type="button">Search</button>
-          </span>
-    </div><br>
     <div>
-        <table class="table table-striped table-inverse">
-            <thead>
-                <tr bgcolor="sky-blue">
-                    <th>Company Id</th>
-                    <th>Company Name</th>
-                    <th>Contact Details</th>
-                    <th>Address</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="company in companys">
-                    <td>{{company.companyId}}</td>
-                    <td>{{company.companyName}}</td>
-                    <td>{{company.companyContactNumber}}</td>
-                    <td>{{company.companyAddress}}</td>
-                    <td align="right"><button class="btn btn-primary" title="show company" ng-click="showDetail(company.companyId)"><span class="glyphicon glyphicon-eye-open"></span></button>
-                        <button class="btn btn-primary" title="update company" ng-click="updateDetail(company.companyId)"><span class="glyphicon glyphicon-edit"></span></button>
-                        <button class="btn btn-primary" title="delete company" ng-click="delete(company.companyId)"><span class="glyphicon glyphicon-trash"></span></button>
-                    </td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <tr bgcolor="#626c7c">
-                    <td colspan="2"><button class="btn btn-info" ng-disabled="preBtnStatus" ng-click="getPreviousCompany()">Previous</button></td>
-                    <td colspan="2" bgcolor="white" align="center"><b>[{{begin}}-{{end}}] of {{total}}</b></td>
-                    <td colspan="2" align="right"><button class="btn btn-info" ng-disabled="nextBtnStatus" ng-click="getNextCompany()">Next</button></td>
-                </tr>
-            </tfoot>
-        </table>
-        <div id="details" ng-show="detailsDivStatus">
-        <hr style="border-width: 3px;border-style: inset;">
-        <h2 ng-show="updateBtnStatus"><b>Update your record</b></h2>
-        <h2 ng-show="!updateBtnStatus"><b>company Details</b></h2>
+    <button class="btn btn-primary" title="update employee" ng-click="updateDetail()"><span class="glyphicon glyphicon-edit"></span></button>
+            <h2 ng-show="updateBtnStatus"><b>Update your record</b></h2>
             <form>
                 <div class="form-group" ng-show="companyIdStatus">
                     <label><h3>company Id</h3></label>
@@ -68,7 +27,5 @@
                 <button type="submit" class="btn btn-primary" ng-show="updateBtnStatus" ng-click="update(company.companyId)">Update</button>
                 <button class="btn btn-primary" ng-show="updateBtnStatus" ng-click="cancel()">Cancel</button>
             </form>
-        </div>
-
     </div>
 </div>

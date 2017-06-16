@@ -4,7 +4,6 @@
          <ul class="nav nav-tabs navbar-inverse nav-stacked"">
             <li ng-if="admin || employee" class="active"><a data-toggle="tab" ng-click="includeProfile()" data-target="#profile">Profile</a></li>
             <li ng-if="admin"><a data-toggle="tab" ng-click="includeProject()" data-target="#project">Project</a></li>
-            <li ng-if="admin"><a data-toggle="tab" ng-click="includeCompany()" data-target="#company">Company</a></li>
             <li ng-if="admin"><a data-toggle="tab" ng-click="includeEmployee()" data-target="#employee">Employee</a></li>
             <li ng-if="admin"><a data-toggle="tab" ng-click="includeAssign()" data-target="#assign">Assign Task</a></li>
             <li ng-if="employee"><a data-toggle="tab" ng-click="includeTask()" data-target="#task">Task</a></li>
@@ -19,9 +18,6 @@
             </div>
             <div id="project" class="tab-pane fade">
                <div  ng-include="prjectTemplate"></div>
-            </div>
-            <div id="company" class="tab-pane fade">
-               <div  ng-include="companyTemplate"></div>
             </div>
             <div id="employee" class="tab-pane fade">
                <div  ng-include="employeeTemplate"></div>

@@ -2,11 +2,13 @@
    <ul class="nav nav-tabs navbar-inverse">
       <li class="active"><a data-toggle="tab" data-target="#user">{{userName}}</a></li>
       <li><a data-toggle="tab" data-target="#account">Account</a></li>
+      <li ng-if="admin"><a data-toggle="tab" ng-click="includeCompany()" data-target="#company">Company</a></li>
       <li><a ng-click="logout()">Logout</a></li>
    </ul>
    <div class="tab-content">
       <div id="user" class="tab-pane fade in active">
          <h3>Profile</h3>
+         <button class="btn btn-primary" title="update employee" ng-click="updateDetail()"><span class="glyphicon glyphicon-edit"></span></button>
          <form>
             <div class="form-group">
                <label>
@@ -34,22 +36,12 @@
             </div>
             <div class="form-group">
                <label>
-                  <h3>Password</h3>
-               </label>
-               <input class="form-control" type="text" ng-model="password" ng-init="password='{{employee.password}}'" value="{{employee.password}}" ng-disabled="inputStatus">
-            </div>
-            <div class="form-group">
-               <label>
-                  <h3>Skills</h3>
-               </label>
-               <input class="form-control" type="text" ng-model="skills" ng-init="skills='{{employee.skills}}'" value="{{employee.skills}}" ng-disabled="inputStatus">
-            </div>
-            <div class="form-group">
-               <label>
                   <h3>Type</h3>
                </label>
                <input class="form-control" type="text" ng-model="type" ng-init="type='{{employee.type}}'" value="{{employee.type}}" ng-disabled="inputStatus">
             </div>
+            <button type="submit" class="btn btn-primary" ng-show="updateBtnStatus" ng-click="update(employee.id)">Update</button>
+            <button class="btn btn-primary" ng-show="updateBtnStatus" ng-click="cancel()">Cancel</button>
          </form>
       </div>
       <div id="account" class="tab-pane fade">
@@ -58,7 +50,7 @@
          <form>
             <table class="table table-striped">
                <tr>
-                  <td>old password</td>
+                  <td>Old password</td>
                   <td><input type="password" name="oldPassword" ng-model="oldPassword" ng-required="true"></td>
                </tr>
                <tr>
@@ -70,10 +62,13 @@
                   <td><input type="password" name="cnfrmPassword" ng-model="cnfrmPassword" ng-required="true"></td>
                </tr>
                <tr>
-                  <td colspan="2"><button  ng-click="changePassword()">Change</button></td>
+                  <td colspan="2"><button  ng-click="changePassword()">Update password</button></td>
                </tr>
             </table>
          </form>
+      </div>
+      <div id="company" class="tab-pane fade">
+               <div  ng-include="companyTemplate"></div>
       </div>
    </div>
 </div>

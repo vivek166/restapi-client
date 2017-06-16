@@ -1,17 +1,5 @@
 app.controller('signupCtrl', ['$scope', '$http', '$location', 'userInfo', function($scope, $http, $location, userInfo){
 	$scope.headerStatus=false;
-		$scope.skills = [];
-		$scope.addSkill = function() {
-			if( $scope.newSkill){
-					$scope.skills.push($scope.newSkill)
-					$scope.newSkill = ''
-			}
-		}
-
-		$scope.deleteSkill = function(index) {	
-			$scope.skills.splice(index, 1);
-		}
-
 	$scope.signupUser=function(){
 		if($scope.password==$scope.confirmPassword){
         var user={};
@@ -19,9 +7,8 @@ app.controller('signupCtrl', ['$scope', '$http', '$location', 'userInfo', functi
 		user.lastName=$scope.lastName;
 		user.companyName=$scope.companyName;
 		user.email=$scope.email;
-		user.skills=$scope.skills.toString();
 		user.mobile=$scope.mobile;
-		user.type=$scope.type;
+		user.type="admin";
 		user.password=$scope.password;
 			 $http({
                 method: 'POST',
