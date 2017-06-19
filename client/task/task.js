@@ -11,6 +11,7 @@ app.controller('taskCtrl', function($http, $scope, projectDetails, userInfo){
                 }
         }).then(function mySucces(response) {
             $scope.projects = response.data;
+            console.log(response.data);
             projectDetails.setProjectDtails(response.data);
         }, function myError(response) {
             $scope.myWelcome = response.statusText;
@@ -19,6 +20,7 @@ app.controller('taskCtrl', function($http, $scope, projectDetails, userInfo){
 
      $scope.getDetail = function() {
         $scope.project = projectDetails.getProjectDetails();
+        $scope.detailsDivStatus=true;
     }
     getProject();
 })

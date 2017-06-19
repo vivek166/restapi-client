@@ -17,7 +17,7 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
     var getEmployee=function(start, size, content, pageNumber){
 	$http({
         method : "GET",
-        url : "http://localhost:8080/projectmanagementapp/user?start="+start+"&size="+size+"&companyid="+userInfo.getUser().user.company.companyId+"&query="+content,
+        url : "http://localhost:8080/projectmanagementapp/user?start="+start+"&size="+size+"&query="+content,
         headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token

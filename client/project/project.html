@@ -52,30 +52,34 @@
          <h2 ng-show="saveBtnStatus"><b>Add new record </b></h2>
          <h2 ng-show="updateBtnStatus"><b>Update your record</b></h2>
          <h2 ng-show="!saveBtnStatus && !updateBtnStatus"><b>Project Details</b></h2>
-         <form>
+         <form name="addprojecform">
             <div class="form-group">
                <label>
                   <h3>Project Title</h3>
                </label>
-               <input class="form-control" type="text" ng-model="projectTitle" ng-init="projectTitle='{{project.projectTitle}}'" value="{{project.projectTitle}}" ng-disabled="inputStatus">
+               <input class="form-control" type="text" name="projectTitle" ng-model="projectTitle" ng-init="projectTitle='{{project.projectTitle}}'" value="{{project.projectTitle}}" ng-disabled="inputStatus" ng-required="true">
+               <span ng-show="addprojecform.projectTitle.$touched && addprojecform.projectTitle.$invalid">*project title  is required.</span>
             </div>
             <div class="form-group">
                <label>
                   <h3>Project Feature</h3>
                </label>
-               <input class="form-control" type="text" ng-model="projectFeature" ng-init="projectFeature='{{project.projectFeature}}'" value="{{project.projectFeature}}" ng-disabled="inputStatus">
+               <input class="form-control" type="text" name="projectFeature" ng-model="projectFeature" ng-init="projectFeature='{{project.projectFeature}}'" value="{{project.projectFeature}}" ng-disabled="inputStatus" ng-required="true">
+               <span ng-show="addprojecform.projectFeature.$touched && addprojecform.projectFeature.$invalid">*project Feature  is required.</span>
             </div>
             <div class="form-group">
                <label>
                   <h3>Technology Used</h3>
                </label>
-               <input class="form-control" type="text" ng-model="technologyUsed" ng-init="technologyUsed='{{project.technologyUsed}}'" value="{{project.technologyUsed}}" ng-disabled="inputStatus">
+               <input class="form-control" type="text" name="technologyUsed"  ng-model="technologyUsed" ng-init="technologyUsed='{{project.technologyUsed}}'" value="{{project.technologyUsed}}" ng-disabled="inputStatus" ng-required="true">
+               <span ng-show="addprojecform.technologyUsed.$touched && addprojecform.technologyUsed.$invalid">*TechnologyUsed  is required.</span>
             </div>
             <div class="form-group">
                <label>
                   <h3>Project Description</h3>
                </label>
-               <input class="form-control" type="text" ng-model="projectDescription" ng-init="projectDescription='{{project.projectDescription}}'" value="{{project.projectDescription}}" ng-disabled="inputStatus">
+               <input class="form-control" type="text" name="projectDescription"  ng-model="projectDescription" ng-init="projectDescription='{{project.projectDescription}}'" value="{{project.projectDescription}}" ng-disabled="inputStatus" ng-required="true">
+               <span ng-show="addprojecform.projectDescription.$touched && addprojecform.projectDescription.$invalid"">*Project Description  is required.</span>
             </div>
             <button type="submit" class="btn btn-primary" ng-show="saveBtnStatus" ng-click="save()">Save</button>
             <button type="submit" class="btn btn-primary" ng-show="updateBtnStatus" ng-click="update(project.projectId)">Update</button>

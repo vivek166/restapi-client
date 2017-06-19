@@ -19,7 +19,7 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
     var getProject = function(start, size, content, pageNumber) {
         $http({
             method: "GET",
-            url: "http://localhost:8080/projectmanagementapp/project?start=" + start + "&size=" + size + "&companyid="+userInfo.getUser().user.company.companyId+"&query=" + content,
+            url: "http://localhost:8080/projectmanagementapp/project?start=" + start + "&size=" + size + "&query=" + content,
             headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
@@ -183,6 +183,7 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
     $scope.showDetail = function(projectId) {
         $scope.projectIdStatus = true;
         $scope.saveBtnStatus = false;
+        $scope.updateBtnStatus = false;
         $scope.inputStatus = true;
         getDetail(projectId);
     }

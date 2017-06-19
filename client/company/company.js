@@ -1,15 +1,15 @@
-app.controller('companyCtrl', function($scope, $http, userInfo) {
-    $scope.inputStatus=true;
-    $scope.companyIdStatus=true;
-    $scope.updateBtnStatus=false;
-    var getCompany = function() {
+app.controller('companyCtrl', function ($scope, $http, userInfo) {
+    $scope.inputStatus = true;
+    $scope.companyIdStatus = true;
+    $scope.updateBtnStatus = false;
+    var getCompany = function () {
         $http({
             method: "GET",
-            url: "http://localhost:8080/projectmanagementapp/company/"+userInfo.getUser().user.company.companyId,
+            url: "http://localhost:8080/projectmanagementapp/company/" + userInfo.getUser().user.company.companyId,
             headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer '+userInfo.getUser().token
-                }
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + userInfo.getUser().token
+            }
         }).then(function mySucces(response) {
             console.log(response.data);
             $scope.company = response.data;
@@ -18,14 +18,14 @@ app.controller('companyCtrl', function($scope, $http, userInfo) {
         });
     }
 
-    $scope.updateDetail = function() {
-        $scope.companyIdStatus=false;
+    $scope.updateDetail = function () {
+        $scope.companyIdStatus = false;
         $scope.updateBtnStatus = true;
         $scope.inputStatus = false;
     }
 
 
-    $scope.update = function(companyId) {
+    $scope.update = function (companyId) {
         var saveStatus = confirm('Are you sure you want to update');
         if (saveStatus) {
             var company = {};
@@ -39,11 +39,11 @@ app.controller('companyCtrl', function($scope, $http, userInfo) {
                 url: 'http://localhost:8080/projectmanagementapp/company/' + companyId,
                 data: company,
                 headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer '+userInfo.getUser().token
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + userInfo.getUser().token
                 }
-            }).then(function(data, status, headers, config) {
-                $scope.companyIdStatus=true;
+            }).then(function (data, status, headers, config) {
+                $scope.companyIdStatus = true;
                 $scope.updateBtnStatus = false;
                 $scope.inputStatus = true;
                 alert("record updated");
@@ -53,12 +53,12 @@ app.controller('companyCtrl', function($scope, $http, userInfo) {
         }
     }
 
-    $scope.cancel = function() {
+    $scope.cancel = function () {
         var cancelStatus = confirm('Are you sure! you want to cancel');
         if (cancelStatus) {
-        $scope.companyIdStatus=true;
-        $scope.updateBtnStatus = false;
-        $scope.inputStatus = true;
+            $scope.companyIdStatus = true;
+            $scope.updateBtnStatus = false;
+            $scope.inputStatus = true;
         } else {
             $scope.detailsDivStatus = true;
         }

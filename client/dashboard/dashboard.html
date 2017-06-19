@@ -2,7 +2,7 @@
    <div class="row">
       <div class="col-lg-3">
          <ul class="nav nav-tabs navbar-inverse nav-stacked"">
-            <li ng-if="admin || employee" class="active"><a data-toggle="tab" ng-click="includeProfile()" data-target="#profile">Profile</a></li>
+            <li ng-if="admin || employee" class="active"><a data-toggle="tab" ng-init="includeProfile()" data-target="#profile">Profile</a></li>
             <li ng-if="admin"><a data-toggle="tab" ng-click="includeProject()" data-target="#project" data-target="#project">Project</a></li>
             <li ng-if="admin"><a data-toggle="tab" ng-click="includeEmployee()" data-target="#employee">Employee</a></li>
             <li ng-if="admin"><a data-toggle="tab" ng-click="includeAssign()" data-target="#assign">Assign Task</a></li>

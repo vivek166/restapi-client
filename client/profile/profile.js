@@ -34,7 +34,7 @@ app.controller('profileCtrl', ['userInfo', '$scope', '$http', '$location', funct
 
     $http({
                 method: 'POST',
-                url: 'http://localhost:8080/projectmanagementapp/user/changepassword?username='+userInfo.getUser().user.email,
+                url: 'http://localhost:8080/projectmanagementapp/user/changepassword',
                 data: password,
                 headers: {
                         'Content-Type': 'application/json',

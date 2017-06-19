@@ -37,25 +37,25 @@
                <label>
                   <h3>Project Title</h3>
                </label>
-               <input class="form-control" type="text" ng-model="projectTitle"  value="{{project.projectTitle}}" ng-disabled="inputStatus">
+               <input class="form-control" type="text" ng-model="projectTitle" ng-init="projectTitle='{{project.projectTitle}}'" value="{{project.projectTitle}}" ng-disabled="inputStatus">
             </div>
             <div class="form-group">
                <label>
                   <h3>Project Feature</h3>
                </label>
-               <input class="form-control" type="text" ng-model="projectFeature"  value="{{project.projectFeature}}" ng-disabled="inputStatus">
+               <input class="form-control" type="text" ng-model="projectFeature" ng-init="projectFeature='{{project.projectFeature}}'"  value="{{project.projectFeature}}" ng-disabled="inputStatus">
             </div>
             <div class="form-group">
                <label>
                   <h3>Technology Used</h3>
                </label>
-               <input class="form-control" type="text" ng-model="technologyUsed"  value="{{project.technologyUsed}}" ng-disabled="inputStatus">
+               <input class="form-control" type="text" ng-model="technologyUsed"  ng-init="technologyUsed='{{project.technologyUsed}}'" value="{{project.technologyUsed}}" ng-disabled="inputStatus">
             </div>
             <div class="form-group">
                <label>
                   <h3>Project Description</h3>
                </label>
-               <input class="form-control" type="text" ng-model="projectDescription"  value="{{project.projectDescription}}" ng-disabled="inputStatus">
+               <input class="form-control" type="text" ng-model="projectDescription" ng-init="projectDescription='{{project.projectDescription}}'" value="{{project.projectDescription}}" ng-disabled="inputStatus">
             </div>
          </form>
       </div>
