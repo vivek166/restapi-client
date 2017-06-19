@@ -24,6 +24,9 @@ app.controller('dashboardCtrl', ['userInfo', '$scope', '$location', '$http', fun
      $scope.includeAssign=function(){
         $scope.assignTemplate="client/assign/assign.html";
     };
+    $scope.includeProjects=function(){
+        $scope.projectsTemplate="client/project/allprojects.html";
+    };
      $scope.includeTask=function(){
         $scope.taskTemplate="client/task/task.html";
     };

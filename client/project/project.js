@@ -91,12 +91,13 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
                         'Authorization': 'Bearer '+userInfo.getUser().token
                 }
             }).then(function(data, status, headers, config) {
+                getProject((start - 1) * size, size, content, pageNumber);
+                $scope.projectTitle="";
+                $scope.projectFeature="";
+                $scope.projectDescription="";
+                $scope.technologyUsed="";
+                $scope.detailsDivStatus = false;
                 alert("record saved");
-            $scope.projectTitle="";
-            $scope.projectFeature="";
-            $scope.projectDescription="";
-            $scope.technologyUsed="";
-            $scope.detailsDivStatus = false;
             })
         } else {
             alert('record not saved');
@@ -124,8 +125,9 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
                         'Authorization': 'Bearer '+userInfo.getUser().token
                 }
             }).then(function(data, status, headers, config) {
-                alert("record updated");
+                getProject((start - 1) * size, size, content, pageNumber);
                 $scope.detailsDivStatus = false;
+                alert("record updated");
             })
         } else {
             alert("record could not be updated");
@@ -165,8 +167,8 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
                         'Authorization': 'Bearer '+userInfo.getUser().token
                 }
             }).then(function mySucces(response) {
-                alert("record deleted");
                 getProject((start - 1) * size, size, content, pageNumber);
+                alert("record deleted");
             }, function myError(response) {
                 $scope.myWelcome = response.statusText;
             });

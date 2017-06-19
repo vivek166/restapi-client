@@ -139,13 +139,14 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
                         'Authorization': 'Bearer '+userInfo.getUser().token
                 }
             }).then(function(data, status, headers, config) {
-                alert("record saved");
                 $scope.firstName="";
                 $scope.lastName="";
                 $scope.email="";
                 $scope.mobile="";
                 $scope.password="";
                 $scope.detailsDivStatus = false;
+                getEmployee((start - 1) * size, size, content, pageNumber);
+                alert("record saved");
             })
         } else {
             alert('record not saved');
@@ -173,8 +174,9 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
                         'Authorization': 'Bearer '+userInfo.getUser().token
                 }
             }).then(function(data, status, headers, config) {
-                alert("record updated");
+                getEmployee((start - 1) * size, size, content, pageNumber);
                 $scope.detailsDivStatus = false;
+                alert("record updated");
             })
         } else {
             alert("record could not be updated");
@@ -192,8 +194,8 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
                         'Authorization': 'Bearer '+userInfo.getUser().token
                 }
             }).then(function mySucces(response) {
-                alert("record deleted");
                 getEmployee((start - 1) * size, size, content, pageNumber);
+                alert("record deleted");
             }, function myError(response) {
                 $scope.myWelcome = response.statusText;
             });

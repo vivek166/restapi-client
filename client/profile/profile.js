@@ -41,6 +41,9 @@ app.controller('profileCtrl', ['userInfo', '$scope', '$http', '$location', funct
                         'Authorization': 'Bearer '+userInfo.getUser().token
                 }
             }).then(function mySucces(response) {
+                $scope.oldPassword="";
+                $scope.newPassword="";
+                $scope.cnfrmPassword="";
                 alert("password changed");
         }, function myError(response) {
            alert("password  can not changed");
@@ -60,12 +63,13 @@ app.controller('profileCtrl', ['userInfo', '$scope', '$http', '$location', funct
     var saveStatus = confirm('Are you sure you want to update');
         if (saveStatus) {
            var employee = {};
-            employee.empId = user.getUser().user.id;
-            employee.firstName = $scope.fName;
-            employee.lastName = $scope.lName;
+            employee.empId = userInfo.getUser().user.id;
+            employee.firstName = $scope.firstName;
+            employee.lastName = $scope.lastName;
             employee.mobile = $scope.mobile;
             employee.skills = $scope.skills;
             employee.type = $scope.type;
+            employee.company=userInfo.getUser().user.company;
 
             $http({
                 method: 'PUT',
