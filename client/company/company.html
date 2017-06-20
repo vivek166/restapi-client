@@ -5,7 +5,7 @@
 </style>
 <div ng-controller="companyCtrl">
    <div>
-      <button class="btn btn-primary" title="update employee" ng-click="updateDetail()"><span class="glyphicon glyphicon-edit"></span></button>
+      <button class="btn btn-primary" ng-show="editBtnStatus" title="update employee" ng-click="updateDetail()"><span class="glyphicon glyphicon-edit"></span></button>
       <h2 ng-show="updateBtnStatus"><b>Update your record</b></h2>
       <form name="addCompanyForm">
          <div class="form-group" ng-show="companyIdStatus">

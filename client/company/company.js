@@ -2,6 +2,11 @@ app.controller('companyCtrl', function ($scope, $http, userInfo) {
     $scope.inputStatus = true;
     $scope.companyIdStatus = true;
     $scope.updateBtnStatus = false;
+    if(userInfo.getUser().user.type=="admin"){
+        $scope.editBtnStatus=true;
+    }else{
+        $scope.editBtnStatus=false;
+    }
     var getCompany = function () {
         $http({
             method: "GET",

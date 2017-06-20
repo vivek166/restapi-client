@@ -8,36 +8,32 @@
             <tr>
                <td>Employee Name*</td>
                <td>
-                 <input class="form-control" list="users" ng-model="searchEmployee" ng-change="refreshEmployeeId()">
-                  <datalist id="users" ng-model="userId">
+                 <input id="uid" class="form-control" list="users" ng-model="searchEmployee" ng-change="refreshEmployeeId()" ng-required="true">
+                  <datalist id="users">
                      <option ng-repeat="user in users">{{user.firstName+" "+user.lastName}}({{user.email}})</option>
                   </datalist>
                   <br> 
-                 <!--  <select class="form-control" name="userdrpdwn" ng-required="true" ng-model="userId">
+                  <span ng-show="assignproject.userdrpdwn.$touched && assignproject.userdrpdwn.$invalid">*The employee name is required.</span>
+                  
+                  <!-- <select class="form-control" name="userdrpdwn" ng-required="true" ng-model="userId">
+                     <option><input type="text" ng-model="searchEmployee"></option>
                      <option ng-repeat="user in users" value="{{user.id}}">{{user.firstName+" "+user.lastName}}({{user.email}})</option>
                   </select> -->
-                  <span ng-show="assignproject.userdrpdwn.$touched && assignproject.userdrpdwn.$invalid">*The employee name is required.</span>
                </td>
-               <!-- <div class="ui fluid search selection dropdown">
-                  <input type="hidden" name="user">
-                  <i class="dropdown icon"></i>
-                  <div class="default text">Select Employee</div>
-                  <div class="menu">
-                     <div class="item" ng-repeat="user in users" data-value="{{user.id}}">{{user.firstName+" "+user.lastName}}({{user.email}})</div>
-                  </div>
-               </div> -->
             </tr>
             <tr>
                <td>Project Name*</td>
                <td>
-                  <input class="form-control" list="projects"  ng-model="searchProject" ng-change="refreshProjectId()">
-                  <datalist id="projects" ng-model="projectId">
+                  <input id="pid" class="form-control" list="projects"  ng-model="searchProject" ng-change="refreshProjectId()" ng-required="true">
+                  <datalist id="projects">
                      <option ng-repeat="project in projects">{{project.projectTitle}}</option>
                   </datalist>
+                  <span ng-show="assignproject.projectdrpdwn.$touched && assignproject.projectdrpdwn.$invalid">*The project name is required.</span>
+
                   <!-- <select class="form-control" name="projectdrpdwn" ng-required="true" ng-model="projectId">
+                     <option><input type="text" ng-model="searchProject"></option>
                      <option ng-repeat="project in projects" value="{{project.projectId}}">{{project.projectTitle}}</option>
                   </select> -->
-                  <span ng-show="assignproject.projectdrpdwn.$touched && assignproject.projectdrpdwn.$invalid">*The project name is required.</span>
                </td>
             </tr>
             <tr>

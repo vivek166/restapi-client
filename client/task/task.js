@@ -1,6 +1,6 @@
 app.controller('taskCtrl', function($http, $scope, projectDetails, userInfo){
-	$scope.detailsDivStatus=false;
-	$scope.inputStatus=true;
+	/*$scope.detailsDivStatus=false;
+	$scope.inputStatus=true;*/
 	var getProject = function() {
         $http({
             method: "GET",
@@ -18,7 +18,7 @@ app.controller('taskCtrl', function($http, $scope, projectDetails, userInfo){
         });
     }
 
-     $scope.getDetail = function() {
+     $scope.getDetail = function(projectId) {
         $scope.project = projectDetails.getProjectDetails();
         $scope.detailsDivStatus=true;
     }

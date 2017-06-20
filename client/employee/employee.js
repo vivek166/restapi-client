@@ -129,7 +129,6 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
             employee.mobile = $scope.mobile;
             employee.password = $scope.password;
             employee.type = "employee";
-            employee.company= userInfo.getUser().user.company;
             $http({
                 method: 'POST',
                 url: 'http://localhost:8080/projectmanagementapp/user',

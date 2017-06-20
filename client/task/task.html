@@ -9,7 +9,7 @@
                <th>Project Id</th>
                <th>Project Title</th>
                <th>Technology Used</th>
-               <th></th>
+               <!-- <th></th> -->
             </tr>
          </thead>
          <tbody>
@@ -19,13 +19,13 @@
                <td>{{project.projectId}}</td>
                <td>{{project.projectTitle}}</td>
                <td>{{project.technologyUsed}}</td>
-               <td align="right"><button class="btn btn-primary" title="show project" ng-click="getDetail()"><span class="glyphicon glyphicon-eye-open"></span></button>
+               <!-- <td align="right"><button class="btn btn-primary" title="show project" ng-click="getDetail(project.projectId)"><span class="glyphicon glyphicon-eye-open"></span></button> -->
                </td>
             </tr>
          </tbody>
       </table>
 	</div>
-	<div ng-show="detailsDivStatus">
+	<!-- <div ng-show="detailsDivStatus">
          <form>
             <div class="form-group">
                <label>
@@ -58,5 +58,5 @@
                <input class="form-control" type="text" ng-model="projectDescription" ng-init="projectDescription='{{project.projectDescription}}'" value="{{project.projectDescription}}" ng-disabled="inputStatus">
             </div>
          </form>
-      </div>
+      </div> -->
 </div>

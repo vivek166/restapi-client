@@ -13,9 +13,9 @@ app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $h
             }).then(function mySucces(response) {
                     $scope.userId="";
                     $scope.projectId="";
-                    alert("project assigned successefully");
+                    alert(response.data);
         }, function myError(response) {
-           alert("project can not assigned");
+           alert(response.data.errorMessage);
         });
 	   }
 
@@ -43,6 +43,9 @@ app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $h
                 }
             }).then(function mySucces(response) {
                 $scope.users=response.data;
+                if(content==""){
+                     getProjects(start, size, content);
+                }
         }, function myError(response) {
             $scope.myWelcome = response.statusText;
         });
@@ -56,6 +59,8 @@ app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $h
         content=$scope.searchProject;
         getProjects(start, size, content);
     }
+
+    
     getUsers(start, size, content);
-    getProjects(start, size, content);
+    
 }]);

@@ -12,7 +12,7 @@ app.controller('signupCtrl', ['$scope', '$http', '$location', 'userInfo', functi
 		user.password=$scope.password;
 			 $http({
                 method: 'POST',
-                url: 'http://localhost:8080/projectmanagementapp/user',
+                url: 'http://localhost:8080/projectmanagementapp/company',
                 data: user,
                 headers: {
                         'Content-Type': 'application/json'
