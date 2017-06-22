@@ -67,6 +67,7 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
         size = 3;
         content = content + query;
         getProject((start - 1) * size, size, content, pageNumber);
+        content="";
     }
 
 

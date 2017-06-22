@@ -2,10 +2,12 @@ app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $h
     var start=0;
     var size=5;
     var content="";
+    var userId=0;
+    var projectId=0;
 	$scope.assign=function(){
 		$http({
                 method: 'POST',
-                url: "http://localhost:8080/projectmanagementapp/user/assignproject?userId="+$scope.userId+"&projectId="+$scope.projectId,
+                url: "http://localhost:8080/projectmanagementapp/user/assignproject?userId="+userId+"&projectId="+projectId,
                 headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
@@ -60,6 +62,15 @@ app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $h
         getProjects(start, size, content);
     }
 
+    $scope.getUserId=function(user){
+        $scope.selectedUserId=user.id;
+        userId=user.id;
+    }
+
+    $scope.getProjectId=function(project){
+        $scope.selectedProjectId=project.projectId;
+        projectId=project.projectId;
+    }
     
     getUsers(start, size, content);
     

@@ -32,9 +32,9 @@
                 <tr ng-repeat="employee in employees">
                     <td>{{employee.firstName}}</td>
                     <td>{{employee.lastName}}</td>
-                    <td>{{employee.email}}</td>
                     <td>{{employee.mobile}}</td>
                     <td>{{employee.type}}</td>
+                    <td>{{employee.email}}</td>
                     <td align="right">
                         <button class="btn btn-primary" title="show employee" ng-click="showDetail(employee.id)"><span class="glyphicon glyphicon-eye-open"></span></button>
                         <button class="btn btn-primary" title="update employee" ng-click="updateDetail(employee.id)"><span class="glyphicon glyphicon-edit"></span></button>

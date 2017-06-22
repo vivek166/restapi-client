@@ -63,6 +63,7 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
         start = 1;
         content = content + query;
         getEmployee((start - 1) * size, size, content, pageNumber);
+        content="";
     }
 
 
