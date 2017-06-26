@@ -158,7 +158,7 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
         var saveStatus = confirm('Are you sure you want to update');
         if (saveStatus) {
            var employee = {};
-            employee.empId = user.getUser().user.id;
+            employee.empId = userInfo.getUser().user.id;
             employee.firstName = $scope.firstName;
             employee.lastName = $scope.lastName;
             employee.mobile = $scope.mobile;

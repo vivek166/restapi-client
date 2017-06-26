@@ -63,11 +63,10 @@ app.controller('profileCtrl', ['userInfo', '$scope', '$http', '$location', funct
     var saveStatus = confirm('Are you sure you want to update');
         if (saveStatus) {
            var employee = {};
-            employee.empId = userInfo.getUser().user.id;
+            employee.id = empId;
             employee.firstName = $scope.firstName;
             employee.lastName = $scope.lastName;
             employee.mobile = $scope.mobile;
-            employee.skills = $scope.skills;
             employee.type = $scope.type;
             employee.company=userInfo.getUser().user.company;
 
