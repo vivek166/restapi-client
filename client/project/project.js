@@ -7,7 +7,7 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
     $scope.projectIdStatus = true;
     $scope.preBtnStatus = true;
     $scope.nextBtnStatus = true;
-
+    var uri = "http://localhost:8080/projectmanagementapp";
 
     var indexing = function(begin, end, total) {
         $scope.begin = begin;
@@ -19,7 +19,7 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
     var getProject = function(start, size, content, pageNumber) {
         $http({
             method: "GET",
-            url: "http://localhost:8080/projectmanagementapp/project?start=" + start + "&size=" + size + "&query=" + content,
+            url: uri+"/project?start=" + start + "&size=" + size + "&query=" + content,
             headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
@@ -85,7 +85,7 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
 
             $http({
                 method: 'POST',
-                url: 'http://localhost:8080/projectmanagementapp/project',
+                url: uri+'/project',
                 data: project,
                 headers: {
                         'Content-Type': 'application/json',
@@ -119,7 +119,7 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
 
             $http({
                 method: 'PUT',
-                url: 'http://localhost:8080/projectmanagementapp/project/' + projectId,
+                url: uri+'/project/' + projectId,
                 data: project,
                 headers: {
                         'Content-Type': 'application/json',
@@ -142,7 +142,7 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
         $scope.detailsDivStatus = true;
         $http({
             method: "GET",
-            url: "http://localhost:8080/projectmanagementapp/project/" + projectId,
+            url: uri+"/project/" + projectId,
             headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
@@ -162,7 +162,7 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
         if (deleteStatus) {
             $http({
                 method: "DELETE",
-                url: "http://localhost:8080/projectmanagementapp/project/" + projectId,
+                url: uri+"/project/" + projectId,
                 headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
@@ -171,6 +171,7 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
                 getProject((start - 1) * size, size, content, pageNumber);
                 alert("record deleted");
             }, function myError(response) {
+                alert(response.data.errorMessage);
                 $scope.myWelcome = response.statusText;
             });
         } else {

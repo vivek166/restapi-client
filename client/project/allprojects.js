@@ -3,6 +3,7 @@ app.controller('allprojectCtrl', function($scope, $http, userInfo) {
     var start = 1;
     var size = 3;
     var content = "";
+    var uri = "http://localhost:8080/projectmanagementapp";
     $scope.detailsDivStatus = false;
     $scope.projectIdStatus = true;
     $scope.preBtnStatus = true;
@@ -19,7 +20,7 @@ app.controller('allprojectCtrl', function($scope, $http, userInfo) {
     var getProject = function(start, size, content, pageNumber) {
         $http({
             method: "GET",
-            url: "http://localhost:8080/projectmanagementapp/project?start=" + start + "&size=" + size + "&companyid="+userInfo.getUser().user.company.companyId+"&query=" + content,
+            url: uri+"/project?start=" + start + "&size=" + size +"&query=" + content,
             headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
@@ -73,7 +74,7 @@ app.controller('allprojectCtrl', function($scope, $http, userInfo) {
         $scope.detailsDivStatus = true;
         $http({
             method: "GET",
-            url: "http://localhost:8080/projectmanagementapp/project/" + projectId,
+            url: uri+"/project/" + projectId,
             headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token

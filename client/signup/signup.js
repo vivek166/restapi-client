@@ -1,5 +1,6 @@
 app.controller('signupCtrl', ['$scope', '$http', '$location', 'userInfo', function($scope, $http, $location, userInfo){
 	$scope.headerStatus=false;
+	var uri = "http://localhost:8080/projectmanagementapp";
 	$scope.signupUser=function(){
 		if($scope.password==$scope.confirmPassword){
         var user={};
@@ -12,7 +13,7 @@ app.controller('signupCtrl', ['$scope', '$http', '$location', 'userInfo', functi
 		user.password=$scope.password;
 			 $http({
                 method: 'POST',
-                url: 'http://localhost:8080/projectmanagementapp/company',
+                url: uri+'/company',
                 data: user,
                 headers: {
                         'Content-Type': 'application/json'

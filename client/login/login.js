@@ -1,11 +1,12 @@
 app.controller('loginCtrl', function($scope, $http, $location, userInfo){
+    var uri = "http://localhost:8080/projectmanagementapp";
 	$scope.signinUser=function(){
 		var credential={};
 		credential.userName=$scope.userName;
 		credential.userPassword=$scope.userPassword;
         $http({
                 method: 'POST',
-                url: 'http://localhost:8080/projectmanagementapp/user/authentication',
+                url: uri+'/user/authentication',
                 data: credential
         }).then(function mySucces(response) {
             userInfo.setUser(response.data);

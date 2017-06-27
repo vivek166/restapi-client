@@ -1,9 +1,15 @@
-<style>
+<style type="text/css">
    #details input {
    border: none;
    }
+
+   #project {
+      margin-left: -15px;
+      padding-left: 5px;
+      background-color: gray;
+   }
 </style>
-<div ng-controller="projectCtrl">
+<div ng-controller="projectCtrl" id="project">
    <br>
    <div>
       <button class="btn btn-info" ng-click="addRecord()" type="button">Add project</button>
@@ -82,6 +88,7 @@
                <span ng-show="addprojecform.projectDescription.$touched && addprojecform.projectDescription.$invalid"">*Project Description  is required.</span>
             </div>
             <button type="submit" class="btn btn-primary" ng-show="saveBtnStatus" ng-click="save()">Save</button>
+            <button type="reset" class="btn btn-primary" ng-show="saveBtnStatus">Reset</button>
             <button type="submit" class="btn btn-primary" ng-show="updateBtnStatus" ng-click="update(project.projectId)">Update</button>
             <button class="btn btn-primary" ng-show="saveBtnStatus || updateBtnStatus" ng-click="cancel()">Cancel</button>
          </form>

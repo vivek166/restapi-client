@@ -2,6 +2,7 @@ app.controller('companyCtrl', function ($scope, $http, userInfo) {
     $scope.inputStatus = true;
     $scope.companyIdStatus = true;
     $scope.updateBtnStatus = false;
+    var uri = "http://localhost:8080/projectmanagementapp";
     if(userInfo.getUser().user.type=="admin"){
         $scope.editBtnStatus=true;
     }else{
@@ -10,7 +11,7 @@ app.controller('companyCtrl', function ($scope, $http, userInfo) {
     var getCompany = function () {
         $http({
             method: "GET",
-            url: "http://localhost:8080/projectmanagementapp/company/" + userInfo.getUser().user.company.companyId,
+            url: uri+"/company/" + userInfo.getUser().user.company.companyId,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + userInfo.getUser().token
@@ -41,7 +42,7 @@ app.controller('companyCtrl', function ($scope, $http, userInfo) {
 
             $http({
                 method: 'PUT',
-                url: 'http://localhost:8080/projectmanagementapp/company/' + companyId,
+                url: uri+'/company/' + companyId,
                 data: company,
                 headers: {
                     'Content-Type': 'application/json',

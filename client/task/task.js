@@ -1,18 +1,19 @@
 app.controller('taskCtrl', function($http, $scope, projectDetails, userInfo){
-	/*$scope.detailsDivStatus=false;
-	$scope.inputStatus=true;*/
+	$scope.detailsDivStatus=false;
+	$scope.inputStatus=true;
+    var uri = "http://localhost:8080/projectmanagementapp";
 	var getProject = function() {
         $http({
             method: "GET",
-            url: "http://localhost:8080/projectmanagementapp/user/"+userInfo.getUser().user.id+"/assignedproject",
+            url: uri+"/user/"+userInfo.getUser().user.id+"/assignedproject",
             headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
                 }
         }).then(function mySucces(response) {
             $scope.projects = response.data;
-            console.log(response.data);
-            projectDetails.setProjectDtails(response.data);
+            console.log(response.data[0]);
+            projectDetails.setProjectDtails(response.data[0]);
         }, function myError(response) {
             $scope.myWelcome = response.statusText;
         });

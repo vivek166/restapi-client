@@ -4,10 +4,11 @@ app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $h
     var content="";
     var userId=0;
     var projectId=0;
+    var uri = "http://localhost:8080/projectmanagementapp";
 	$scope.assign=function(){
 		$http({
                 method: 'POST',
-                url: "http://localhost:8080/projectmanagementapp/user/assignproject?userId="+userId+"&projectId="+projectId,
+                url: uri+"/user/assignproject?userId="+userId+"&projectId="+projectId,
                 headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
@@ -24,7 +25,7 @@ app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $h
     var getProjects=function(start, size, content){
         $http({
                 method: 'GET',
-                url: "http://localhost:8080/projectmanagementapp/project/filter?start="+start+"&size="+size+"&query="+content,
+                url: uri+"/project/filter?start="+start+"&size="+size+"&query="+content,
                 headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
@@ -38,7 +39,7 @@ app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $h
     var getUsers=function(start, size, content){
         $http({
                 method: 'GET',
-                url: "http://localhost:8080/projectmanagementapp/user/filter?start="+start+"&size="+size+"&query="+content,
+                url: uri+"/user/filter?start="+start+"&size="+size+"&query="+content,
                 headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token

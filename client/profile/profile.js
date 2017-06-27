@@ -1,13 +1,13 @@
 app.controller('profileCtrl', ['userInfo', '$scope', '$http', '$location', function(userInfo, $scope, $http, $location){
     $scope.inputStatus=true;
-
+    var uri = "http://localhost:8080/projectmanagementapp";
     $scope.includeCompany=function(){
         $scope.companyTemplate="client/company/company.html";
     };
 	var getEmployee=function(){
 	$http({
         method : "GET",
-        url : "http://localhost:8080/projectmanagementapp/user/"+userInfo.getUser().user.id,
+        url : uri+"/user/"+userInfo.getUser().user.id,
         headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
@@ -34,7 +34,7 @@ app.controller('profileCtrl', ['userInfo', '$scope', '$http', '$location', funct
 
     $http({
                 method: 'POST',
-                url: 'http://localhost:8080/projectmanagementapp/user/changepassword',
+                url: uri+'/user/changepassword',
                 data: password,
                 headers: {
                         'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ app.controller('profileCtrl', ['userInfo', '$scope', '$http', '$location', funct
 
             $http({
                 method: 'PUT',
-                url: 'http://localhost:8080/projectmanagementapp/user/' + empId,
+                url: uri+'/user/' + empId,
                 data: employee,
                 headers: {
                         'Content-Type': 'application/json',
@@ -90,7 +90,7 @@ app.controller('profileCtrl', ['userInfo', '$scope', '$http', '$location', funct
    $scope.logout=function(){
         $http({
             method: "DELETE",
-            url: "http://localhost:8080/projectmanagementapp/user/"+userInfo.getUser().user.id+"/deletetoken",
+            url: uri+"/user/"+userInfo.getUser().user.id+"/deletetoken",
             headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token

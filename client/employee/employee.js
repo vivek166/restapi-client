@@ -3,6 +3,7 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
     var start=1;
     var size=3;
     var content="";
+    var uri = "http://localhost:8080/projectmanagementapp";
     $scope.detailsDivStatus = false;
     $scope.empIdStatus = true;
     $scope.preBtnStatus = true;
@@ -17,7 +18,7 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
     var getEmployee=function(start, size, content, pageNumber){
 	$http({
         method : "GET",
-        url : "http://localhost:8080/projectmanagementapp/user?start="+start+"&size="+size+"&query="+content,
+        url : uri+"/user?start="+start+"&size="+size+"&query="+content,
         headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
@@ -72,7 +73,7 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
         $scope.detailsDivStatus=true;
 		$http({
         method : "GET",
-        url : "http://localhost:8080/projectmanagementapp/user/"+empId,
+        url : uri+"/user/"+empId,
         headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
@@ -132,7 +133,7 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
             employee.type = "employee";
             $http({
                 method: 'POST',
-                url: 'http://localhost:8080/projectmanagementapp/user',
+                url: uri+'/user',
                 data: employee,
                 headers: {
                         'Content-Type': 'application/json',
@@ -167,7 +168,7 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
 
             $http({
                 method: 'PUT',
-                url: 'http://localhost:8080/projectmanagementapp/user/' + empId,
+                url: uri+'/user/' + empId,
                 data: employee,
                 headers: {
                         'Content-Type': 'application/json',
@@ -188,7 +189,7 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
         if (deleteStatus) {
             $http({
                 method: "DELETE",
-                url: "http://localhost:8080/projectmanagementapp/user/" + empId,
+                url: uri+"/user/" + empId,
                 headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
@@ -197,6 +198,7 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
                 getEmployee((start - 1) * size, size, content, pageNumber);
                 alert("record deleted");
             }, function myError(response) {
+                alert(response.data.errorMessage);
                 $scope.myWelcome = response.statusText;
             });
         } else {

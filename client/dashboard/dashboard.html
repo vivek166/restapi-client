@@ -1,6 +1,16 @@
+<style type="text/css">
+.imgpositon {
+    margin:auto;
+    line-height:51px;
+    vertical-align:middle;
+}
+</style>
 <div ng-controller="dashboardCtrl">
    <div class="row">
-      <div class="col-lg-3">
+      <div class="col-lg-2">
+         <div class="imgpositon"> 
+            <img src="../../resource/user_pic.jpg" class="img-thumbnail" width="auto" height="100px">
+         </div>
          <ul class="nav nav-tabs navbar-inverse nav-stacked"">
             <li ng-if="admin || employee" class="active"><a data-toggle="tab" ng-init="includeProfile()" data-target="#profile">Profile</a></li>
             <li ng-if="admin"><a data-toggle="tab" ng-click="includeProject()" data-target="#project" data-target="#project">Project</a></li>
@@ -12,7 +22,7 @@
             <li ng-if="employee"><a data-toggle="tab" ng-click="includeTeam()" data-target="#team">Team Members</a></li>
          </ul>
       </div>
-      <div class="col-lg-9">
+      <div class="col-lg-10">
          <div class="tab-content">
             <div id="profile" class="tab-pane fade in active">
                <div ng-include="profileTemplate"></div>
