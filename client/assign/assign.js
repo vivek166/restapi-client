@@ -1,9 +1,11 @@
 app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $http, userInfo){
     var start=0;
-    var size=5;
+    var size=3;
     var content="";
-    var userId=0;
-    var projectId=0;
+    var userId;
+    var projectId;
+    $scope.selectedEmployeeName = "select employee name";
+    $scope.selectedProjectName = "select project name";
     var uri = "http://localhost:8080/projectmanagementapp";
 	$scope.assign=function(){
 		$http({
@@ -66,11 +68,13 @@ app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $h
     $scope.getUserId=function(user){
         $scope.selectedUserId=user.id;
         userId=user.id;
+        $scope.selectedEmployeeName = user.firstName+" "+user.lastName+"("+user.email+")";
     }
 
     $scope.getProjectId=function(project){
         $scope.selectedProjectId=project.projectId;
         projectId=project.projectId;
+        $scope.selectedProjectName = project.projectTitle;
     }
     
     getUsers(start, size, content);
