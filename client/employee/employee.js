@@ -139,7 +139,7 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
                         'Content-Type': 'application/json',
                         'Authorization': 'Bearer '+userInfo.getUser().token
                 }
-            }).then(function(data, status, headers, config) {
+            }).then(function mySuccess(data, status, headers, config) {
                 $scope.firstName="";
                 $scope.lastName="";
                 $scope.email="";
@@ -148,6 +148,8 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
                 $scope.detailsDivStatus = false;
                 getEmployee((start - 1) * size, size, content, pageNumber);
                 alert("record saved");
+            }, function myError(response){
+                alert(response.data.errorMessage);
             })
         } else {
             alert('record not saved');
