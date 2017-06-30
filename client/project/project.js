@@ -99,6 +99,8 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
                 $scope.technologyUsed="";
                 $scope.detailsDivStatus = false;
                 alert("record saved");
+            }, function myError(response){
+                alert(response.data.errorMessage);
             })
         } else {
             alert('record not saved');
