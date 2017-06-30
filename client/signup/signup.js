@@ -18,9 +18,11 @@ app.controller('signupCtrl', ['$scope', '$http', '$location', 'userInfo', functi
                 headers: {
                         'Content-Type': 'application/json'
                 }
-            }).then(function(data, status, headers, config) {
+            }).then(function mySuccess(data, status, headers, config) {
             	//userInfo.setUser(data.data);
                 $location.path('/login');
+            }, function myError(response){
+                alert(response.data.errorMessage);
             })
 		}else{
 			alert('user password must be match')
