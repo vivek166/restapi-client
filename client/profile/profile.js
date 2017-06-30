@@ -45,8 +45,9 @@ app.controller('profileCtrl', ['userInfo', '$scope', '$http', '$location', funct
                 $scope.newPassword="";
                 $scope.cnfrmPassword="";
                 alert("password changed");
+                $location.path('/login');
         }, function myError(response) {
-           alert("password  can not changed");
+           alert("password is incorrect");
         });
     }else{
         alert("password not matched");
