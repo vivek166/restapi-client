@@ -1,6 +1,7 @@
 app.controller('taskCtrl', function($http, $scope, projectDetails, userInfo){
 	$scope.detailsDivStatus=false;
 	$scope.inputStatus=true;
+    $scope.hideBtnStatus = false;
     var uri = "http://localhost:8080/projectmanagementapp";
 	var getProject = function() {
         $http({
@@ -19,9 +20,14 @@ app.controller('taskCtrl', function($http, $scope, projectDetails, userInfo){
         });
     }
 
+    $scope.hide = function() {
+        $scope.detailsDivStatus = false;
+        }
+
      $scope.getDetail = function(projectId) {
         $scope.project = projectDetails.getProjectDetails();
         $scope.detailsDivStatus=true;
+        $scope.hideBtnStatus = true;
     }
     getProject();
 })

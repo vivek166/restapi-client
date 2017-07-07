@@ -63,6 +63,7 @@
                </label>
                <input class="form-control" type="text" ng-model="projectDescription" ng-init="projectDescription='{{project.projectDescription}}'" value="{{project.projectDescription}}" ng-disabled="inputStatus">
             </div>
+            <button class="btn btn-primary" ng-show="hideBtnStatus" ng-click="hide()">Hide</button>
          </form>
       </div>
 </div>

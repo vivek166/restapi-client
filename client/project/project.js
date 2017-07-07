@@ -150,6 +150,7 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
                         'Authorization': 'Bearer '+userInfo.getUser().token
                 }
         }).then(function mySucces(response) {
+             console.log(response);
             $scope.project = response.data;
         }, function myError(response) {
             $scope.myWelcome = response.statusText;

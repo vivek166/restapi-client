@@ -22,7 +22,7 @@ app.controller('signupCtrl', ['$scope', '$http', '$location', 'userInfo', functi
             	//userInfo.setUser(data.data);
                 $location.path('/login');
             }, function myError(response){
-                alert(response.data.errorMessage);
+                alert("company or user already present");
             })
 		}else{
 			alert('user password must be match')

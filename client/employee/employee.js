@@ -79,6 +79,7 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
                         'Authorization': 'Bearer '+userInfo.getUser().token
                 }
     }).then(function mySucces(response) {
+        console.log(response);
         $scope.employee = response.data;
     }, function myError(response) {
         $scope.myWelcome = response.statusText;
