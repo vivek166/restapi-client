@@ -1,90 +1,91 @@
 app.controller('employeeCtrl', function($scope, $http, userInfo) {
-	var pageNumber=1;
-    var start=1;
-    var size=3;
-    var content="";
+    var pageNumber = 1;
+    var start = 1;
+    var size = 3;
+    var content = "";
     var uri = "http://localhost:8080/projectmanagementapp";
     $scope.detailsDivStatus = false;
     $scope.empIdStatus = true;
     $scope.preBtnStatus = true;
     $scope.nextBtnStatus = true;
 
-    var indexing=function(begin , end, total){
-        $scope.begin=begin;
-        $scope.end=end;
-        $scope.total=total; 
+    var indexing = function(begin, end, total) {
+        $scope.begin = begin;
+        $scope.end = end;
+        $scope.total = total;
     }
 
-    var getEmployee=function(start, size, content, pageNumber){
-	$http({
-        method : "GET",
-        url : uri+"/user?start="+start+"&size="+size+"&query="+content,
-        headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer '+userInfo.getUser().token
-                }
-    }).then(function mySucces(response) {
-        $scope.employees=response.data.data;
-        if(pageNumber>1){
-         $scope.preBtnStatus=false;
-       }else{
-         $scope.preBtnStatus=true;
-       }
-      
-       if(pageNumber<((response.data.totalResult)/size)){
-         $scope.nextBtnStatus=false;
-       }else{
-         $scope.nextBtnStatus=true;
-       }
+    var getEmployee = function(start, size, content, pageNumber) {
+        $http({
+            method: "GET",
+            url: uri + "/user?start=" + start + "&size=" + size + "&query=" + content,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + userInfo.getUser().token
+            }
+        }).then(function mySucces(response) {
+            $scope.employees = response.data.data;
+            if (pageNumber > 1) {
+                $scope.preBtnStatus = false;
+            } else {
+                $scope.preBtnStatus = true;
+            }
 
-       indexing(start+1, start+response.data.data.length, response.data.totalResult);
+            if (pageNumber < ((response.data.totalResult) / size)) {
+                $scope.nextBtnStatus = false;
+            } else {
+                $scope.nextBtnStatus = true;
+            }
 
-       
-    }, function myError(response) {
-        $scope.myWelcome = response.statusText;
-    });
-   }
-	
-	$scope.getNextEmployee=function(){
-		 $scope.preBtnStatus=false;
-         start=start+1;
-         pageNumber=pageNumber+1;
-         getEmployee((start-1)*size , size, content, pageNumber);
-	}
+            indexing(start + 1, start + response.data.data.length, response.data.totalResult);
 
-	$scope.getPreviousEmployee=function(){
-		$scope.nextBtnStatus=false;
-         pageNumber=pageNumber-1;
-         start=start-1;
-         getEmployee((start-1)*size , size, content, pageNumber);
-	}
+
+        }, function myError(response) {
+            $scope.myWelcome = response.statusText;
+        });
+    }
+
+    $scope.getNextEmployee = function() {
+        $scope.preBtnStatus = false;
+        start = start + 1;
+        pageNumber = pageNumber + 1;
+        getEmployee((start - 1) * size, size, content, pageNumber);
+    }
+
+    $scope.getPreviousEmployee = function() {
+        $scope.nextBtnStatus = false;
+        pageNumber = pageNumber - 1;
+        start = start - 1;
+        getEmployee((start - 1) * size, size, content, pageNumber);
+    }
 
     $scope.search = function(query) {
         pageNumber = 1;
         start = 1;
         content = content + query;
         getEmployee((start - 1) * size, size, content, pageNumber);
-        content="";
+        content = "";
     }
 
 
 
-	var getDetail=function(empId){
-        $scope.detailsDivStatus=true;
-		$http({
-        method : "GET",
-        url : uri+"/user/"+empId,
-        headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer '+userInfo.getUser().token
-                }
-    }).then(function mySucces(response) {
-        console.log(response);
-        $scope.employee = response.data;
-    }, function myError(response) {
-        $scope.myWelcome = response.statusText;
-    });
-   }
+    var getDetail = function(empId) {
+        $scope.detailsDivStatus = true;
+        $http({
+            method: "GET",
+            url: uri + "/user/" + empId,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + userInfo.getUser().token
+            }
+        }).then(function mySucces(response) {
+            console.log(response);
+            $scope.employee = response.data;
+            getProject(empId);
+        }, function myError(response) {
+            $scope.myWelcome = response.statusText;
+        });
+    }
 
 
 
@@ -110,7 +111,7 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
         $scope.empIdStatus = false;
         $scope.inputStatus = false;
         $scope.detailsDivStatus = true;
-        $scope.employee={};
+        $scope.employee = {};
     }
 
     $scope.cancel = function() {
@@ -134,22 +135,22 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
             employee.type = "employee";
             $http({
                 method: 'POST',
-                url: uri+'/user',
+                url: uri + '/user',
                 data: employee,
                 headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer '+userInfo.getUser().token
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + userInfo.getUser().token
                 }
             }).then(function mySuccess(data, status, headers, config) {
-                $scope.firstName="";
-                $scope.lastName="";
-                $scope.email="";
-                $scope.mobile="";
-                $scope.password="";
+                $scope.firstName = "";
+                $scope.lastName = "";
+                $scope.email = "";
+                $scope.mobile = "";
+                $scope.password = "";
                 $scope.detailsDivStatus = false;
                 getEmployee((start - 1) * size, size, content, pageNumber);
                 alert("record saved");
-            }, function myError(response){
+            }, function myError(response) {
                 alert(response.data.errorMessage);
             })
         } else {
@@ -161,21 +162,21 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
     $scope.update = function(empId) {
         var saveStatus = confirm('Are you sure you want to update');
         if (saveStatus) {
-           var employee = {};
+            var employee = {};
             employee.empId = userInfo.getUser().user.id;
             employee.firstName = $scope.firstName;
             employee.lastName = $scope.lastName;
             employee.mobile = $scope.mobile;
             employee.type = "employee";
-            employee.company= userInfo.getUser().user.company;
+            employee.company = userInfo.getUser().user.company;
 
             $http({
                 method: 'PUT',
-                url: uri+'/user/' + empId,
+                url: uri + '/user/' + empId,
                 data: employee,
                 headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer '+userInfo.getUser().token
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + userInfo.getUser().token
                 }
             }).then(function(data, status, headers, config) {
                 getEmployee((start - 1) * size, size, content, pageNumber);
@@ -192,10 +193,10 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
         if (deleteStatus) {
             $http({
                 method: "DELETE",
-                url: uri+"/user/" + empId,
+                url: uri + "/user/" + empId,
                 headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer '+userInfo.getUser().token
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + userInfo.getUser().token
                 }
             }).then(function mySucces(response) {
                 getEmployee((start - 1) * size, size, content, pageNumber);
@@ -210,5 +211,38 @@ app.controller('employeeCtrl', function($scope, $http, userInfo) {
     }
 
 
-   getEmployee((start-1)*size , size, content, pageNumber);
+    var getProject = function(userid) {
+        $http({
+            method: "GET",
+            url: uri + "/user/" + userid + "/assignedproject",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + userInfo.getUser().token
+            }
+        }).then(function mySucces(response) {
+            $scope.assignedProjects = response.data;
+            console.log(response.data[0]);
+        }, function myError(response) {
+            $scope.myWelcome = response.statusText;
+        });
+    }
+
+    $scope.unAssignProject = function(projectId, userId) {
+        $http({
+            method: "DELETE",
+            url: uri + "/project/" + projectId + "/unassign/" + userId,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + userInfo.getUser().token
+            }
+        }).then(function mySucces(response) {
+            $scope.message = response.data;
+            console.log($scope.message);
+        }, function myError(response) {
+            $scope.myWelcome = response.statusText;
+        });
+    }
+
+
+    getEmployee((start - 1) * size, size, content, pageNumber);
 });

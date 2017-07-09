@@ -20,11 +20,11 @@ app.controller('allprojectCtrl', function($scope, $http, userInfo) {
     var getProject = function(start, size, content, pageNumber) {
         $http({
             method: "GET",
-            url: uri+"/project?start=" + start + "&size=" + size +"&query=" + content,
+            url: uri + "/project?start=" + start + "&size=" + size + "&query=" + content,
             headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer '+userInfo.getUser().token
-                }
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + userInfo.getUser().token
+            }
         }).then(function mySucces(response) {
             $scope.projects = response.data.data;
             if (pageNumber > 1) {
@@ -74,11 +74,11 @@ app.controller('allprojectCtrl', function($scope, $http, userInfo) {
         $scope.detailsDivStatus = true;
         $http({
             method: "GET",
-            url: uri+"/project/" + projectId,
+            url: uri + "/project/" + projectId,
             headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer '+userInfo.getUser().token
-                }
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + userInfo.getUser().token
+            }
         }).then(function mySucces(response) {
             $scope.project = response.data;
         }, function myError(response) {
@@ -94,9 +94,9 @@ app.controller('allprojectCtrl', function($scope, $http, userInfo) {
         getDetail(projectId);
     }
 
-      $scope.hide = function() {
+    $scope.hide = function() {
         $scope.detailsDivStatus = false;
-        }
+    }
     //Execution start from here
     getProject((start - 1) * size, size, content, pageNumber);
 });

@@ -1,17 +1,12 @@
-app.controller('companyCtrl', function ($scope, $http, userInfo) {
+app.controller('companyCtrl', function($scope, $http, userInfo) {
     $scope.inputStatus = true;
     $scope.companyIdStatus = true;
     $scope.updateBtnStatus = false;
     var uri = "http://localhost:8080/projectmanagementapp";
-    if(userInfo.getUser().user.type=="admin"){
-        $scope.editBtnStatus=true;
-    }else{
-        $scope.editBtnStatus=false;
-    }
-    var getCompany = function () {
+    var getCompany = function() {
         $http({
             method: "GET",
-            url: uri+"/company/" + userInfo.getUser().user.company.companyId,
+            url: uri + "/company/" + userInfo.getUser().user.company.companyId,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + userInfo.getUser().token
@@ -24,14 +19,14 @@ app.controller('companyCtrl', function ($scope, $http, userInfo) {
         });
     }
 
-    $scope.updateDetail = function () {
+    $scope.updateDetail = function() {
         $scope.companyIdStatus = false;
         $scope.updateBtnStatus = true;
         $scope.inputStatus = false;
     }
 
 
-    $scope.update = function (companyId) {
+    $scope.update = function(companyId) {
         var saveStatus = confirm('Are you sure you want to update');
         if (saveStatus) {
             var company = {};
@@ -42,13 +37,13 @@ app.controller('companyCtrl', function ($scope, $http, userInfo) {
 
             $http({
                 method: 'PUT',
-                url: uri+'/company/' + companyId,
+                url: uri + '/company/' + companyId,
                 data: company,
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'Bearer ' + userInfo.getUser().token
                 }
-            }).then(function (data, status, headers, config) {
+            }).then(function(data, status, headers, config) {
                 $scope.companyIdStatus = true;
                 $scope.updateBtnStatus = false;
                 $scope.inputStatus = true;
@@ -59,7 +54,7 @@ app.controller('companyCtrl', function ($scope, $http, userInfo) {
         }
     }
 
-    $scope.cancel = function () {
+    $scope.cancel = function() {
         var cancelStatus = confirm('Are you sure! you want to cancel');
         if (cancelStatus) {
             $scope.companyIdStatus = true;

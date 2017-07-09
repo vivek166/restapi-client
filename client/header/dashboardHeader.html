@@ -1,0 +1,8 @@
+<div ng-controller="dashboardHeaderCtrl">
+   <ul class="nav nav-tabs navbar-inverse">
+      <li class="active"><a href="/user/profile">{{userName | uppercase}}</a></li>
+      <li><a href="/user/account">Account</a></li>
+      <li><a href="/user/company">Company</a></li>
+      <li style="float : right"><a ng-click="logout()">Logout</a></li>
+   </ul>
+</div>

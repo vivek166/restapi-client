@@ -9,46 +9,53 @@
    font-size: 20px;
    }
 </style>
-<div ng-controller="assignCtrl" id="assign">
-   <div class="row">
-      <div class="col-lg-8 col-lg-offset-2">
-         <div class="container-fluid">
-            <form name="assignproject">
-            <br>
-            <br>
-               <h4>Assign Project to Employee</h4>
-               <table class="table">
-                  <tr>
-                     <td>Employee Name*</td>
-                     <td>
-                        <div class="dropdown">
-                           <button class="btn btn-default dropdown-toggle form-control" type="text" data-toggle="dropdown">{{selectedEmployeeName}}
-                           <span class="caret"></span></button>
-                           <ul class="dropdown-menu" id="options">
-                              <li class="dropdown-header"><input type="text" class="form-control" ng-change="refreshEmployeeId()"  ng-model="searchEmployee" autofocus></li>
-                              <li ng-repeat="user in users" value="{{user.id}}" ng-click="getUserId(user)" ng-required="true">{{user.firstName+" "+user.lastName}}({{user.email}})</li>
-                           </ul>
-                        </div>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td>Project Name*</td>
-                     <td>
-                        <div class="dropdown">
-                           <button class="btn btn-default dropdown-toggle form-control" type="button" data-toggle="dropdown">{{selectedProjectName}}
-                           <span class="caret"></span></button>
-                           <ul class="dropdown-menu" id="options">
-                              <li class="dropdown-header"><input type="text" class="form-control" ng-change="refreshProjectId()"  ng-model="searchProject" autofocus></li>
-                              <li ng-repeat="project in projects" value="{{project.projectId}}" ng-click="getProjectId(project)" ng-required="true">{{project.projectTitle}}</li>
-                           </ul>
-                        </div>
-                     </td>
-                  </tr>
-                  <tr>
-                     <td><button  class="form-control btn btn-primary" ng-click="assign()" ng-disabled="assignproject.$invalid && assignproject.$error">Assign</button></td>
-                  </tr>
-               </table>
-            </form>
+<div class="row">
+   <div class="col-sm-3">
+      <div ng-include="'client/dashboard/dashboard.html'"></div>
+   </div>
+   <div class="col-sm-9">
+      <div ng-controller="assignCtrl" id="assign">
+         <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+               <div class="container-fluid">
+                  <form name="assignproject">
+                     <br>
+                     <br>
+                     <h4>Assign Project to Employee</h4>
+                     <table class="table">
+                        <tr>
+                           <td>Employee Name*</td>
+                           <td>
+                              <div class="dropdown">
+                                 <button class="btn btn-default dropdown-toggle form-control" type="text" data-toggle="dropdown">{{selectedEmployeeName}}
+                                 <span class="caret"></span></button>
+                                 <ul class="dropdown-menu" id="options">
+                                    <li class="dropdown-header"><input type="text" class="form-control" ng-change="refreshEmployeeId()"  ng-model="searchEmployee" autofocus></li>
+                                    <li ng-repeat="user in users" value="{{user.id}}" ng-click="getUserId(user)" ng-required="true">{{user.firstName+" "+user.lastName}}({{user.email}})</li>
+                                 </ul>
+                              </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td>Project Name*</td>
+                           <td>
+                              <div class="dropdown">
+                                 <button class="btn btn-default dropdown-toggle form-control" type="button" data-toggle="dropdown">{{selectedProjectName}}
+                                 <span class="caret"></span></button>
+                                 <ul class="dropdown-menu" id="options">
+                                    <li class="dropdown-header"><input type="text" class="form-control" ng-change="refreshProjectId()"  ng-model="searchProject" autofocus></li>
+                                    <li ng-repeat="project in projects" value="{{project.projectId}}" ng-click="getProjectId(project)" ng-required="true">{{project.projectTitle}}</li>
+                                 </ul>
+                              </div>
+                           </td>
+                        </tr>
+                        <tr>
+                           <td><button  class="form-control btn btn-primary" ng-click="assign()" ng-disabled="assignproject.$invalid && assignproject.$error">Assign</button></td>
+                        </tr>
+                     </table>
+                  </form>
+               </div>
+            </div>
          </div>
       </div>
    </div>

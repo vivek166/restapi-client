@@ -1,11 +1,18 @@
 <style type="text/css">
    #team {
-      margin-left: -15px;
-      padding-left: 5px;
+   margin-left: -15px;
+   padding-left: 5px;
    }
 </style>
-<div id="team">
-	<div>
-		<h2>Team</h2>
-	</div>
+<div class="row">
+   <div class="col-sm-3">
+      <div ng-include="'client/dashboard/dashboard.html'"></div>
+   </div>
+   <div class="col-sm-9">
+      <div id="team" ng-controller="teamCtrl">
+         <div>
+            <h2>Team</h2>
+         </div>
+      </div>
+   </div>
 </div>

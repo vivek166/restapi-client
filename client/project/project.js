@@ -19,11 +19,11 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
     var getProject = function(start, size, content, pageNumber) {
         $http({
             method: "GET",
-            url: uri+"/project?start=" + start + "&size=" + size + "&query=" + content,
+            url: uri + "/project?start=" + start + "&size=" + size + "&query=" + content,
             headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer '+userInfo.getUser().token
-                }
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + userInfo.getUser().token
+            }
         }).then(function mySucces(response) {
             $scope.projects = response.data.data;
             if (pageNumber > 1) {
@@ -67,7 +67,7 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
         size = 3;
         content = content + query;
         getProject((start - 1) * size, size, content, pageNumber);
-        content="";
+        content = "";
     }
 
 
@@ -81,25 +81,25 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
             project.projectFeature = $scope.projectFeature;
             project.projectDescription = $scope.projectDescription;
             project.technologyUsed = $scope.technologyUsed;
-            project.company=userInfo.getUser().user.company;
+            project.company = userInfo.getUser().user.company;
 
             $http({
                 method: 'POST',
-                url: uri+'/project',
+                url: uri + '/project',
                 data: project,
                 headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer '+userInfo.getUser().token
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + userInfo.getUser().token
                 }
             }).then(function(data, status, headers, config) {
                 getProject((start - 1) * size, size, content, pageNumber);
-                $scope.projectTitle="";
-                $scope.projectFeature="";
-                $scope.projectDescription="";
-                $scope.technologyUsed="";
+                $scope.projectTitle = "";
+                $scope.projectFeature = "";
+                $scope.projectDescription = "";
+                $scope.technologyUsed = "";
                 $scope.detailsDivStatus = false;
                 alert("record saved");
-            }, function myError(response){
+            }, function myError(response) {
                 alert(response.data.errorMessage);
             })
         } else {
@@ -117,15 +117,15 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
             project.projectFeature = $scope.projectFeature;
             project.projectDescription = $scope.projectDescription;
             project.technologyUsed = $scope.technologyUsed;
-            project.company=userInfo.getUser().user.company;
+            project.company = userInfo.getUser().user.company;
 
             $http({
                 method: 'PUT',
-                url: uri+'/project/' + projectId,
+                url: uri + '/project/' + projectId,
                 data: project,
                 headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer '+userInfo.getUser().token
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + userInfo.getUser().token
                 }
             }).then(function(data, status, headers, config) {
                 getProject((start - 1) * size, size, content, pageNumber);
@@ -144,14 +144,15 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
         $scope.detailsDivStatus = true;
         $http({
             method: "GET",
-            url: uri+"/project/" + projectId,
+            url: uri + "/project/" + projectId,
             headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer '+userInfo.getUser().token
-                }
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + userInfo.getUser().token
+            }
         }).then(function mySucces(response) {
-             console.log(response);
+            console.log(response);
             $scope.project = response.data;
+            getEmployee(projectId);
         }, function myError(response) {
             $scope.myWelcome = response.statusText;
         })
@@ -165,10 +166,10 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
         if (deleteStatus) {
             $http({
                 method: "DELETE",
-                url: uri+"/project/" + projectId,
+                url: uri + "/project/" + projectId,
                 headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': 'Bearer '+userInfo.getUser().token
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + userInfo.getUser().token
                 }
             }).then(function mySucces(response) {
                 getProject((start - 1) * size, size, content, pageNumber);
@@ -207,7 +208,7 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
         $scope.projectIdStatus = false;
         $scope.inputStatus = false;
         $scope.detailsDivStatus = true;
-        $scope.project={};
+        $scope.project = {};
     }
 
     $scope.cancel = function() {
@@ -217,6 +218,38 @@ app.controller('projectCtrl', function($scope, $http, userInfo) {
         } else {
             $scope.detailsDivStatus = true;
         }
+    }
+
+    var getEmployee = function(projectId) {
+        $http({
+            method: "GET",
+            url: uri + "/project/" + projectId + "/assignedemployee",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + userInfo.getUser().token
+            }
+        }).then(function mySucces(response) {
+            $scope.assignedEmployees = response.data;
+            console.log(response.data[0]);
+        }, function myError(response) {
+            $scope.myWelcome = response.statusText;
+        });
+    }
+
+    $scope.unAssignEmployee = function(projectId, userId) {
+        $http({
+            method: "DELETE",
+            url: uri + "/project/" + projectId + "/unassign/" + userId,
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer ' + userInfo.getUser().token
+            }
+        }).then(function mySucces(response) {
+            $scope.message = response.data;
+            console.log($scope.message);
+        }, function myError(response) {
+            $scope.myWelcome = response.statusText;
+        });
     }
 
 
