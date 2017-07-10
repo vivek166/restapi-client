@@ -2,8 +2,8 @@ app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $h
     var start = 0;
     var size = 3;
     var content = "";
-    var userId;
-    var projectId;
+    var userId = 0;
+    var projectId = 0;
     $scope.selectedEmployeeName = "select employee name";
     $scope.selectedProjectName = "select project name";
     var uri = "http://localhost:8080/projectmanagementapp";
@@ -24,10 +24,10 @@ app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $h
         });
     }
 
-    var getProjects = function(start, size, content) {
+    var getProjects = function(start, size, content, userId) {
         $http({
             method: 'GET',
-            url: uri + "/project/filter?start=" + start + "&size=" + size + "&query=" + content,
+            url: uri + "/project/filter?start=" + start + "&size=" + size + "&query=" + content + "&userId=" + userId,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + userInfo.getUser().token
@@ -38,18 +38,18 @@ app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $h
             $scope.myWelcome = response.statusText;
         });
     }
-    var getUsers = function(start, size, content) {
+    var getUsers = function(start, size, content, projectId) {
         $http({
             method: 'GET',
-            url: uri + "/user/filter?start=" + start + "&size=" + size + "&query=" + content,
+            url: uri + "/user/filter?start=" + start + "&size=" + size + "&query=" + content + "&projectId=" + projectId,
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': 'Bearer ' + userInfo.getUser().token
             }
         }).then(function mySucces(response) {
             $scope.users = response.data;
-            if (content == "") {
-                getProjects(start, size, content);
+            if (content == "" && projectId ==0) {
+                getProjects(start, size, content, userId);
             }
         }, function myError(response) {
             $scope.myWelcome = response.statusText;
@@ -69,14 +69,16 @@ app.controller('assignCtrl', ['$scope', '$http', 'userInfo', function($scope, $h
         $scope.selectedUserId = user.id;
         userId = user.id;
         $scope.selectedEmployeeName = user.firstName + " " + user.lastName + "(" + user.email + ")";
+        getProjects(start, size, content, userId);
     }
 
     $scope.getProjectId = function(project) {
         $scope.selectedProjectId = project.projectId;
         projectId = project.projectId;
         $scope.selectedProjectName = project.projectTitle;
+        getUsers(start, size, content, projectId);
     }
 
-    getUsers(start, size, content);
+    getUsers(start, size, content, projectId);
 
 }]);
